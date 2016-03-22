@@ -38,6 +38,10 @@ public class GameManager {
         frame.setVisible(true);
     }
 
+    public GameStateManager getGameStateManager() {
+        return gsm;
+    }
+
     /**
      * Update the game.
      */
