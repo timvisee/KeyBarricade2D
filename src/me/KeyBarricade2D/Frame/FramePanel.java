@@ -5,8 +5,6 @@ import me.KeyBarricade2D.Manager.GameStateManager;
 import javax.swing.*;
 import java.awt.*;
 
-
-
 public class FramePanel extends JPanel {
 
     private GameStateManager gsm;
@@ -24,6 +22,5 @@ public class FramePanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
 
         gsm.paint(g2);
-
     }
 }
