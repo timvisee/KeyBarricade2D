@@ -13,6 +13,8 @@ public class Main {
 
         manager.getGameStateManager().loadLevel(new Level1());
 
+        manager.getGameStateManager().start();
+
         while(true){
 
             manager.update();

@@ -18,6 +18,11 @@ public class GameStateManager {
         this.level = level;
     }
 
+    public void start(){
+
+        this.level.start();
+    }
+
     public void paint(Graphics2D g) {
 
         this.level.paint(g);

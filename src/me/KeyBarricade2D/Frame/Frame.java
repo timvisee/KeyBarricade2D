@@ -17,5 +17,5 @@ public class Frame extends JFrame {
         this.setPreferredSize(new Dimension(this.WIDTH, this.HEIGHT));
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setResizable(false);
-    }
+  }
 }
