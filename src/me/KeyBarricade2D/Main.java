@@ -12,5 +12,16 @@ public class Main {
         manager.init();
 
         manager.getGameStateManager().loadLevel(new Level1());
+
+        while(true){
+
+            manager.update();
+
+            try {
+                Thread.sleep(30);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
