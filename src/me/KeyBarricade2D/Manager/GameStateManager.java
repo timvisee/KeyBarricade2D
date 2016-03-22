@@ -4,13 +4,13 @@ import java.awt.*;
 
 public class GameStateManager {
 
-    public void update(){
+    public void update() {
 
+        //
     }
 
-    public void paint(Graphics2D g){
+    public void paint(Graphics2D g) {
 
         g.drawRect(50, 50, 150, 150);
-
     }
 }

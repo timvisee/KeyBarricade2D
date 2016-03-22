@@ -3,9 +3,6 @@ package me.KeyBarricade2D.Manager;
 import me.KeyBarricade2D.Frame.Frame;
 import me.KeyBarricade2D.Frame.FramePanel;
 
-/**
- * Created by Simon on 22-3-2016.
- */
 public class GameManager {
 
     /**
@@ -50,7 +47,4 @@ public class GameManager {
 
         framePanel.repaint();
     }
-
-
-
 }
