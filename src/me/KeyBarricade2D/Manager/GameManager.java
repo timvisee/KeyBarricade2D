@@ -24,7 +24,7 @@ public class GameManager {
     /**
      * Initialize the Game.
      */
-    public void init(){
+    public void init() {
 
         gsm = new GameStateManager();
 
@@ -45,7 +45,7 @@ public class GameManager {
     /**
      * Update the game.
      */
-    public void update(){
+    public void update() {
 
         gsm.update();
 

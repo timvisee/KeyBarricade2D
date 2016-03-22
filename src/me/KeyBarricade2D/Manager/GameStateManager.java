@@ -13,7 +13,6 @@ public class GameStateManager {
         this.level.update();
     }
 
-
     public void loadLevel(BaseLevel level){
         this.level = level;
     }
