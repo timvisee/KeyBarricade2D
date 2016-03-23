@@ -28,7 +28,6 @@ public class Level2 extends BaseLevel {
 
     private BufferedImage grass;
     private BufferedImage stone;
-    private BufferedImage image = null;
 
     private Player player;
 
@@ -62,19 +61,8 @@ public class Level2 extends BaseLevel {
     public void start() {
 
         player = new Player(210, 210, 40, 40);
-
-        try {
-            stone = ImageIO.read(getClass().getResourceAsStream("Resources/stone.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            grass = ImageIO.read(getClass().getResourceAsStream("Resources/tegel.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        stone = loadImage("stone.png");
+        grass = loadImage("grass.png");
     }
 
 
@@ -82,7 +70,14 @@ public class Level2 extends BaseLevel {
     public void update() {
 
         player.registerMovement();
-
     }
 
+    public BufferedImage loadImage(String filename) {
+
+        try {
+            return ImageIO.read(getClass().getResourceAsStream("Resources/" + filename));
+        } catch(IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
