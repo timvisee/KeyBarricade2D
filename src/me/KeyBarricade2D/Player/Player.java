@@ -27,19 +27,23 @@ public class Player {
     public void registerMovement(){
 
         if(Input.isPressed(KeyEvent.VK_W) || Input.isPressed(KeyEvent.VK_UP)){
-            this.y -= 5;
+            this.y -= 40;
+            Input.flush();
         }
 
         if(Input.isPressed(KeyEvent.VK_S) || Input.isPressed(KeyEvent.VK_DOWN)){
-            this.y += 5;
+            this.y += 40;
+            Input.flush();
         }
 
         if(Input.isPressed(KeyEvent.VK_D) || Input.isPressed(KeyEvent.VK_RIGHT)){
-            this.x += 5;
+            this.x += 40;
+            Input.flush();
         }
 
         if(Input.isPressed(KeyEvent.VK_A) || Input.isPressed(KeyEvent.VK_LEFT)){
-            this.x -= 5;
+            this.x -= 40;
+            Input.flush();
         }
     }
 }

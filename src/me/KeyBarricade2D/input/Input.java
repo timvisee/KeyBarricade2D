@@ -1,5 +1,4 @@
 package me.KeyBarricade2D.input;
-
 import me.KeyBarricade2D.input.key.KeyEventType;
 
 import java.util.ArrayList;
@@ -42,9 +41,10 @@ public class Input {
         switch(eventType) {
             case PRESSED:
                 // Add the key to the list if it isn't in the list already
-                if(!pressedKeys.contains(keyCode))
+                if(!pressedKeys.contains(keyCode)) {
                     pressedKeys.add(keyCode);
-                break;
+                    break;
+                }
 
             case RELEASED:
                 // Remove the key from the list if it's currently in the list
