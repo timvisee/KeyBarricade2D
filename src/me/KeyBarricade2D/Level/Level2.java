@@ -6,14 +6,15 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.URL;
 
 
 public class Level2 extends BaseLevel {
 
     private int[][] map;
 
-    private BufferedImage grass;
-    private BufferedImage stone;
+    private Image grass;
+    private Image stone;
 
     private Player player;
 
@@ -24,16 +25,12 @@ public class Level2 extends BaseLevel {
     @Override
     public void start() {
 
+
         player = new Player(210, 210, 40, 40);
         loadMap();
 
-        try {
-            stone = ImageIO.read(getClass().getResourceAsStream("Resources/stone.png"));
-            grass = ImageIO.read(getClass().getResourceAsStream("Resources/tegel.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        stone = Toolkit.getDefaultToolkit().getImage(Level2.class.getResource("Resources/stone.png"));
+        grass = Toolkit.getDefaultToolkit().getImage(Level2.class.getResource("Resources/tegel.jpg"));
     }
 
 
@@ -55,6 +52,7 @@ public class Level2 extends BaseLevel {
 
                 }
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

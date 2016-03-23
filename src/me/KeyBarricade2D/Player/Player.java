@@ -45,7 +45,7 @@ public class Player {
 
 
     public void paint(Graphics2D g){
-        g.drawRect(x, y, width, height);
+        g.fillRect(x, y, width, height);
     }
 
 }
