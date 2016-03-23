@@ -20,36 +20,20 @@ public class Level2 extends BaseLevel {
     private int mapWidth;
     private int mapHeight;
 
-    @Override
-    public void paint(Graphics2D g) {
-
-        for (int i = 0; i < mapHeight; i++) {
-            for (int j = 0; j <  mapWidth; j++) {
-
-                switch (map[i][j]) {
-
-                    case 1:
-                        g.drawImage(stone, 10 + j * 40, 10 + i * 40, 40, 40, null);
-                        break;
-
-                    default:
-                        g.drawImage(grass, 10 + j * 40, 10 + i * 40, 40, 40, null);
-                        break;
-                }
-            }
-        }
-
-        player.paint(g);
-    }
 
     @Override
     public void start() {
 
-        loadMap();
         player = new Player(210, 210, 40, 40);
+        loadMap();
 
-        stone = loadImage("stone.png");
-        grass = loadImage("tegel.jpg");
+        try {
+            stone = ImageIO.read(getClass().getResourceAsStream("Resources/stone.png"));
+            grass = ImageIO.read(getClass().getResourceAsStream("Resources/tegel.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -76,18 +60,27 @@ public class Level2 extends BaseLevel {
         }
     }
 
-    public BufferedImage loadImage(String filename) {
-
-        try {
-            return ImageIO.read(getClass().getResourceAsStream("Resources/" + filename));
-        } catch(IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Override
     public void update() {
 
         player.registerMovement();
     }
-}
+
+    @Override
+    public void paint(Graphics2D g) {
+
+        for (int i = 0; i < mapHeight; i++) {
+            for (int j = 0; j <  mapWidth; j++) {
+
+                if (map[i][j] == 1) {
+                    g.drawImage(stone, 10 + j * 40, 10 + i * 40, 40, 40, null);
+                }
+                if(map[i][j]== 0) {
+                    g.drawImage(grass, 10 + j * 40, 10 + i * 40, 40, 40, null);
+                    }
+                }
+
+            }
+        player.paint(g);
+        }
+    }

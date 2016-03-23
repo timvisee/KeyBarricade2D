@@ -13,15 +13,11 @@ public class Player {
     private int height;
 
     public Player(int x, int y, int width, int height){
+
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-    }
-
-
-    public void paint(Graphics2D g){
-        g.fillRect(x, y, width, height);
     }
 
     public void registerMovement(){
@@ -46,4 +42,10 @@ public class Player {
             Input.flush();
         }
     }
+
+
+    public void paint(Graphics2D g){
+        g.drawRect(x, y, width, height);
+    }
+
 }
