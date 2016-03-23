@@ -1,14 +1,12 @@
 package me.KeyBarricade2D.Manager;
 
 import me.KeyBarricade2D.Level.BaseLevel;
-import me.KeyBarricade2D.Player.Player;
 
 import java.awt.*;
 
 public class GameStateManager {
 
     private BaseLevel level;
-    private Player player;
 
     public void update() {
 
