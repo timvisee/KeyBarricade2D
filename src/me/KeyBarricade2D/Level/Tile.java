@@ -1,21 +1,21 @@
 package me.KeyBarricade2D.Level;
 
-import java.awt.image.BufferedImage;
+import java.awt.*;
 
 public class Tile {
 
-    private BufferedImage image;
+    private Image image;
 
-    public Tile(BufferedImage image){
+    public Tile(Image image){
 
         this.image = image;
     }
 
-    public BufferedImage getImage() {
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(BufferedImage image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 }
