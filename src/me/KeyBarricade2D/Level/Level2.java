@@ -25,7 +25,7 @@ public class Level2 extends BaseLevel {
     @Override
     public void start() {
 
-        player = new Player(210, 210, 40, 40);
+        player = new Player(210, 250, 40, 40);
         loadMap();
 
         stone = Toolkit.getDefaultToolkit().getImage(Level2.class.getResource("Resources/stone.png"));
@@ -38,7 +38,27 @@ public class Level2 extends BaseLevel {
             for (int j = 0; j < mapWidth; j++) {
 
                 if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10)) && map[i][j] == 1){
-                    System.out.println("colliding...!");
+
+                    if(player.isMovingLeft){
+                        player.setX(player.getX() + 40);
+                        player.isMovingLeft = false;
+                    }
+
+                    if(player.isMovingRight){
+                        player.setX(player.getX() -40);
+                        player.isMovingRight = false;
+                    }
+
+                    if(player.isMovingUp){
+                        player.setY(player.getY() + 40);
+                        player.isMovingUp = false;
+                    }
+
+                    if(player.isMovingDown){
+                        player.setY(player.getY() - 40);
+                        player.isMovingDown = false;
+                    }
+
                 }
             }
         }
