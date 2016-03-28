@@ -2,11 +2,9 @@ package me.KeyBarricade2D.Level;
 
 import me.KeyBarricade2D.Player.Player;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.net.URL;
+
 
 
 public class Level2 extends BaseLevel {
@@ -21,16 +19,29 @@ public class Level2 extends BaseLevel {
     private int mapWidth;
     private int mapHeight;
 
+    private int tileSize = 40;
+
 
     @Override
     public void start() {
-
 
         player = new Player(210, 210, 40, 40);
         loadMap();
 
         stone = Toolkit.getDefaultToolkit().getImage(Level2.class.getResource("Resources/stone.png"));
         grass = Toolkit.getDefaultToolkit().getImage(Level2.class.getResource("Resources/tegel.jpg"));
+    }
+
+    public void checkCollision(){
+
+        for (int i = 0; i < mapHeight; i++) {
+            for (int j = 0; j < mapWidth; j++) {
+
+                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10)) && map[i][j] == 1){
+                    System.out.println("colliding...!");
+                }
+            }
+        }
     }
 
 
@@ -62,6 +73,9 @@ public class Level2 extends BaseLevel {
     public void update() {
 
         player.registerMovement();
+
+        checkCollision();
+
     }
 
     @Override
@@ -71,10 +85,10 @@ public class Level2 extends BaseLevel {
             for (int j = 0; j <  mapWidth; j++) {
 
                 if (map[i][j] == 1) {
-                    g.drawImage(stone, 10 + j * 40, 10 + i * 40, 40, 40, null);
+                    g.drawImage(stone, 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
                 }
                 if(map[i][j]== 0) {
-                    g.drawImage(grass, 10 + j * 40, 10 + i * 40, 40, 40, null);
+                    g.drawImage(grass, 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
                     }
                 }
 
