@@ -64,7 +64,6 @@ public class Level2 extends BaseLevel {
         }
     }
 
-
     public void loadMap(){
         try {
             BufferedReader br = new BufferedReader(new FileReader("testmap.txt"));
