@@ -39,7 +39,7 @@ public class Player {
         this.y = y;
 
         try {
-            image = ImageIO.read(new File("Resources/player.png"));
+            image = ImageIO.read(new File("Resources/Images/player.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
