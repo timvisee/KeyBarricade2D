@@ -1,12 +1,5 @@
 package me.KeyBarricade2D.Level;
-<<<<<<< HEAD
-=======
-
 import me.KeyBarricade2D.Level.Tiles.Barricade;
-<<<<<<< HEAD
->>>>>>> dev-nathanbakhuijzen
-=======
->>>>>>> dev-nathanbakhuijzen
 import me.KeyBarricade2D.Level.Tiles.Key;
 import me.KeyBarricade2D.Level.Tiles.Tile;
 import me.KeyBarricade2D.Level.Tiles.Wall;
@@ -28,6 +21,7 @@ public class Level {
     private BufferedImage stone;
     private BufferedImage ground;
     private BufferedImage key;
+    private BufferedImage barricade;
 
     private int mapWidth;
     private int mapHeight;
@@ -45,6 +39,7 @@ public class Level {
             stone  = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\stone.png"));
             ground = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\tegel.jpg"));
             key = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\key.png"));
+            barricade = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\barricade.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,29 +47,29 @@ public class Level {
 
     }
 
-    public void checkCollision() {
+    public void checkCollision(){
 
         for (int i = 0; i < mapHeight; i++) {
             for (int j = 0; j < mapWidth; j++) {
 
-                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 1)) {
+                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 1)){
 
-                    if(player.isMovingLeft) {
+                    if(player.isMovingLeft){
                         player.setX(player.getX() + 40);
                         player.isMovingLeft = false;
                     }
 
-                    if(player.isMovingRight) {
+                    if(player.isMovingRight){
                         player.setX(player.getX() -40);
                         player.isMovingRight = false;
                     }
 
-                    if(player.isMovingUp) {
+                    if(player.isMovingUp){
                         player.setY(player.getY() + 40);
                         player.isMovingUp = false;
                     }
 
-                    if(player.isMovingDown) {
+                    if(player.isMovingDown){
                         player.setY(player.getY() - 40);
                         player.isMovingDown = false;
                     }
@@ -84,7 +79,7 @@ public class Level {
         }
     }
 
-    public void loadMap() {
+    public void loadMap(){
 
         try {
             BufferedReader br = new BufferedReader(new FileReader("testmap.txt"));
@@ -102,40 +97,17 @@ public class Level {
 
                     int x = Integer.parseInt(numbers[j]);
                     switch(x) {
-<<<<<<< HEAD
-<<<<<<< HEAD
                         case 0:
                             map[i][j] = new Tile(ground, 0);
                             break;
                         case 1:
                             map[i][j] = new Wall(stone, 1);
                             break;
-//                      case 2:
-//                            map[i][j] = new Barricade();
-//                            break;
-                      case 3:
-                            map[i][j] = new Key(key, 3);
-=======
-                        case 1:
-                            map[i][j] = new Wall(stone, 1);
-                            break;
-=======
-                        case 1:
-                            map[i][j] = new Wall(stone, 1);
-                            break;
->>>>>>> dev-nathanbakhuijzen
-                        /*case 2:
-                            map[i][j] = new Barricade();
+                        case 2:
+                            map[i][j] = new Barricade(barricade, 2);
                             break;
                         case 3:
-                            map[i][j] = new Key();
-                            break;*/
-                        default:
-                            map[i][j] = new Tile(grass, 0);
-<<<<<<< HEAD
->>>>>>> dev-nathanbakhuijzen
-=======
->>>>>>> dev-nathanbakhuijzen
+                            map[i][j] = new Key(key, 3);
                             break;
                     }
 
@@ -144,7 +116,7 @@ public class Level {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        System.out.println("kok");
         mapIsLoaded = true;
     }
 
@@ -153,6 +125,7 @@ public class Level {
         player.registerMovement();
 
         checkCollision();
+
     }
 
     public void paint(Graphics2D g) {
@@ -166,6 +139,10 @@ public class Level {
                     }
 
                     if (map[i][j].tileType == 1) {
+                        g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
+                    }
+
+                    if (map[i][j].tileType == 2) {
                         g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
                     }
 
