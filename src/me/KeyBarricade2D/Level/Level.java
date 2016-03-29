@@ -41,10 +41,10 @@ public class Level {
     public void loadTiles(){
 
         try {
-            stone       = ImageIO.read(new File("stone.png"));
-            ground      = ImageIO.read(new File("tegel.jpg"));
-            key         = ImageIO.read(new File("key.png"));
-            barricade   = ImageIO.read(new File("barricade.png"));
+            stone       = ImageIO.read(new File("Resources/stone.png"));
+            ground      = ImageIO.read(new File("Resources/tegel.jpg"));
+            key         = ImageIO.read(new File("Resources/key.png"));
+            barricade   = ImageIO.read(new File("Resources/barricade.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
