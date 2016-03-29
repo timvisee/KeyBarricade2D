@@ -14,8 +14,8 @@ public class Player {
     private final int distance = 40;
 
     public boolean isMovingUp = false;
-    public boolean isMovingDown = false;
     public boolean isMovingLeft = false;
+    public boolean isMovingDown = false;
     public boolean isMovingRight = false;
 
     private int W = KeyEvent.VK_W;
@@ -37,59 +37,65 @@ public class Player {
 
         if(isPressed(W) || isPressed(UP)) {
             moveUp();
-            isMovingUp = true;
-            isMovingDown = false;
-            isMovingRight = false;
-            isMovingLeft = false;
         }
 
         if(isPressed(A) || isPressed(LEFT)) {
             moveLeft();
-            isMovingUp = false;
-            isMovingDown = false;
-            isMovingRight = false;
-            isMovingLeft = true;
         }
 
         if(isPressed(S) || isPressed(DOWN)) {
             moveDown();
-            isMovingUp = false;
-            isMovingDown = true;
-            isMovingRight = false;
-            isMovingLeft = false;
         }
 
         if(isPressed(D) || isPressed(RIGHT)) {
             moveRight();
-            isMovingUp = false;
-            isMovingDown = false;
-            isMovingRight = true;
-            isMovingLeft = false;
         }
     }
 
     private void moveUp() {
         this.y -= distance;
         Input.flush();
+        setMoving(0);
     }
 
     private void moveLeft() {
         this.x -= distance;
         Input.flush();
+        setMoving(1);
     }
 
     private void moveDown() {
         this.y += distance;
         Input.flush();
+        setMoving(2);
     }
 
     private void moveRight() {
         this.x += distance;
         Input.flush();
+        setMoving(3);
     }
 
     private boolean isPressed(int keycode) {
         return Input.isPressed(keycode);
+    }
+
+    private void setMoving(int keycode) {
+        resetMoving();
+        switch(keycode) {
+            case 0: isMovingUp = true; break;
+            case 1: isMovingLeft = true; break;
+            case 2: isMovingDown = true; break;
+            case 3: isMovingRight = true; break;
+            default: break;
+        }
+    }
+
+    private void resetMoving() {
+        isMovingUp = false;
+        isMovingLeft = false;
+        isMovingDown = false;
+        isMovingRight = false;
     }
 
     public int getX() {
