@@ -20,7 +20,7 @@ public class Main {
             manager.update();
 
             try {
-                Thread.sleep(15);
+                Thread.sleep(30);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
