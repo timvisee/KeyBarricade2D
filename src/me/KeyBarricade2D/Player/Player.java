@@ -36,40 +36,26 @@ public class Player {
     public void registerMovement() {
 
         if(isPressed(W) || isPressed(UP))
-            moveUp();
+            move(0);
 
         if(isPressed(A) || isPressed(LEFT))
-            moveLeft();
+            move(1);
 
         if(isPressed(S) || isPressed(DOWN))
-            moveDown();
+            move(2);
 
         if(isPressed(D) || isPressed(RIGHT))
-            moveRight();
+            move(3);
     }
 
-    private void moveUp() {
-        this.y -= distance;
-        Input.flush();
-        setMoving(0);
-    }
-
-    private void moveLeft() {
-        this.x -= distance;
-        Input.flush();
-        setMoving(1);
-    }
-
-    private void moveDown() {
-        this.y += distance;
-        Input.flush();
-        setMoving(2);
-    }
-
-    private void moveRight() {
-        this.x += distance;
-        Input.flush();
-        setMoving(3);
+    private void move(int move) {
+        switch(move) {
+            case 0: this.y -= distance; Input.flush(); setMoving(0); break;
+            case 1: this.x -= distance; Input.flush(); setMoving(1); break;
+            case 2: this.y += distance; Input.flush(); setMoving(2); break;
+            case 3: this.x += distance; Input.flush(); setMoving(3); break;
+            default: break;
+        }
     }
 
     private boolean isPressed(int keycode) {
