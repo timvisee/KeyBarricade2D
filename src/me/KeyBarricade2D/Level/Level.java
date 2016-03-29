@@ -10,8 +10,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-
-
 public class Level {
 
     private Tile [][] map;
@@ -28,9 +26,6 @@ public class Level {
 
     private int tileSize = 40;
 
-    private boolean mapIsLoaded = false;
-
-
     public void start() {
 
         player = new Player(210, 250);
@@ -46,10 +41,10 @@ public class Level {
     public void loadTiles(){
 
         try {
-            stone  = ImageIO.read(new File("stone.png"));
-            ground = ImageIO.read(new File("tegel.jpg"));
-            key = ImageIO.read(new File("key.png"));
-            barricade = ImageIO.read(new File("barricade.png"));
+            stone       = ImageIO.read(new File("stone.png"));
+            ground      = ImageIO.read(new File("tegel.jpg"));
+            key         = ImageIO.read(new File("key.png"));
+            barricade   = ImageIO.read(new File("barricade.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,7 +82,6 @@ public class Level {
                             map[i][j] = new Key(key, 3);
                             break;
                     }
-
                 }
             }
         } catch (IOException e) {
@@ -129,9 +123,7 @@ public class Level {
     public void update() {
 
         player.registerMovement();
-
         checkCollision();
-
     }
 
     public void paint(Graphics2D g) {
@@ -139,21 +131,8 @@ public class Level {
             for (int i = 0; i < mapHeight; i++) {
                 for (int j = 0; j < mapWidth; j++) {
 
-                    if (map[i][j].tileType == 0) {
                         g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
-                    }
 
-                    if (map[i][j].tileType == 1) {
-                        g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
-                    }
-
-                    if (map[i][j].tileType == 2) {
-                        g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
-                    }
-
-                    if (map[i][j].tileType == 3) {
-                        g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
-                    }
                 }
             player.paint(g);
         }
