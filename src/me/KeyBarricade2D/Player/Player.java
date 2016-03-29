@@ -9,27 +9,24 @@ public class Player {
 
     private int x;
     private int y;
-    private int width;
-    private int height;
+    private final int width = 40;
+    private final int height = 40;
+    private final int distance = 40;
 
-    public boolean isMovingLeft =  false;
-    public boolean isMovingRight=  false;
-    public boolean isMovingUp =    false;
-    public boolean isMovingDown =  false;
+    public boolean isMovingUp = false;
+    public boolean isMovingDown = false;
+    public boolean isMovingLeft = false;
+    public boolean isMovingRight = false;
 
-    public Player(int x, int y, int width, int height){
-
+    public Player(int x, int y) {
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
     }
 
     public void registerMovement(){
 
         if(Input.isPressed(KeyEvent.VK_W) || Input.isPressed(KeyEvent.VK_UP)){
-            this.y -= 40;
-            Input.flush();
+            moveUp();
             isMovingUp = true;
             isMovingDown = false;
             isMovingRight = false;
@@ -37,8 +34,7 @@ public class Player {
         }
 
         if(Input.isPressed(KeyEvent.VK_S) || Input.isPressed(KeyEvent.VK_DOWN)){
-            this.y += 40;
-            Input.flush();
+            moveDown();
             isMovingUp = false;
             isMovingDown = true;
             isMovingRight = false;
@@ -46,8 +42,7 @@ public class Player {
         }
 
         if(Input.isPressed(KeyEvent.VK_D) || Input.isPressed(KeyEvent.VK_RIGHT)){
-            this.x += 40;
-            Input.flush();
+            moveRight();
             isMovingUp = false;
             isMovingDown = false;
             isMovingRight = true;
@@ -55,13 +50,32 @@ public class Player {
         }
 
         if(Input.isPressed(KeyEvent.VK_A) || Input.isPressed(KeyEvent.VK_LEFT)){
-            this.x -= 40;
-            Input.flush();
+            moveLeft();
             isMovingUp = false;
             isMovingDown = false;
             isMovingRight = false;
             isMovingLeft = true;
         }
+    }
+
+    private void moveUp() {
+        this.y -= distance;
+        Input.flush();
+    }
+
+    private void moveLeft() {
+        this.x -= distance;
+        Input.flush();
+    }
+
+    private void moveDown() {
+        this.y += distance;
+        Input.flush();
+    }
+
+    private void moveRight() {
+        this.x += distance;
+        Input.flush();
     }
 
     public int getX() {
