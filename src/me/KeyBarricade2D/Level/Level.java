@@ -1,8 +1,5 @@
 package me.KeyBarricade2D.Level;
-import me.KeyBarricade2D.Level.Tiles.Barricade;
-import me.KeyBarricade2D.Level.Tiles.Key;
-import me.KeyBarricade2D.Level.Tiles.Tile;
-import me.KeyBarricade2D.Level.Tiles.Wall;
+import me.KeyBarricade2D.Level.Tiles.*;
 import me.KeyBarricade2D.Player.Player;
 
 import javax.imageio.ImageIO;
@@ -20,6 +17,7 @@ public class Level {
     private BufferedImage ground;
     private BufferedImage key;
     private BufferedImage barricade;
+    private BufferedImage goal;
 
     private int mapWidth;
     private int mapHeight;
@@ -45,6 +43,7 @@ public class Level {
             ground      = ImageIO.read(new File("Resources/tegel.jpg"));
             key         = ImageIO.read(new File("Resources/key.png"));
             barricade   = ImageIO.read(new File("Resources/barricade.png"));
+            goal        = ImageIO.read(new File("Resources/goal.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,6 +79,9 @@ public class Level {
                             break;
                         case 3:
                             map[i][j] = new Key(key);
+                            break;
+                        case 4:
+                            map[i][j] = new Goal(goal);
                             break;
                     }
                 }
