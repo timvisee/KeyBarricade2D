@@ -18,6 +18,16 @@ public class Player {
     public boolean isMovingLeft = false;
     public boolean isMovingRight = false;
 
+    private int W = KeyEvent.VK_W;
+    private int A = KeyEvent.VK_A;
+    private int S = KeyEvent.VK_S;
+    private int D = KeyEvent.VK_D;
+
+    private int UP = KeyEvent.VK_UP;
+    private int LEFT = KeyEvent.VK_LEFT;
+    private int DOWN = KeyEvent.VK_DOWN;
+    private int RIGHT = KeyEvent.VK_RIGHT;
+
     public Player(int x, int y) {
         this.x = x;
         this.y = y;
@@ -25,7 +35,7 @@ public class Player {
 
     public void registerMovement(){
 
-        if(Input.isPressed(KeyEvent.VK_W) || Input.isPressed(KeyEvent.VK_UP)){
+        if(isPressed(W) || isPressed(UP)) {
             moveUp();
             isMovingUp = true;
             isMovingDown = false;
@@ -33,7 +43,15 @@ public class Player {
             isMovingLeft = false;
         }
 
-        if(Input.isPressed(KeyEvent.VK_S) || Input.isPressed(KeyEvent.VK_DOWN)){
+        if(isPressed(A) || isPressed(LEFT)) {
+            moveLeft();
+            isMovingUp = false;
+            isMovingDown = false;
+            isMovingRight = false;
+            isMovingLeft = true;
+        }
+
+        if(isPressed(S) || isPressed(DOWN)) {
             moveDown();
             isMovingUp = false;
             isMovingDown = true;
@@ -41,20 +59,12 @@ public class Player {
             isMovingLeft = false;
         }
 
-        if(Input.isPressed(KeyEvent.VK_D) || Input.isPressed(KeyEvent.VK_RIGHT)){
+        if(isPressed(D) || isPressed(RIGHT)) {
             moveRight();
             isMovingUp = false;
             isMovingDown = false;
             isMovingRight = true;
             isMovingLeft = false;
-        }
-
-        if(Input.isPressed(KeyEvent.VK_A) || Input.isPressed(KeyEvent.VK_LEFT)){
-            moveLeft();
-            isMovingUp = false;
-            isMovingDown = false;
-            isMovingRight = false;
-            isMovingLeft = true;
         }
     }
 
@@ -76,6 +86,10 @@ public class Player {
     private void moveRight() {
         this.x += distance;
         Input.flush();
+    }
+
+    private boolean isPressed(int keycode) {
+        return Input.isPressed(keycode);
     }
 
     public int getX() {
