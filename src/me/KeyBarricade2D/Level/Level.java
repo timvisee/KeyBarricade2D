@@ -35,47 +35,24 @@ public class Level {
 
         player = new Player(210, 250);
 
-        try {
-            stone  = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\stone.png"));
-            ground = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\tegel.jpg"));
-            key = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\key.png"));
-            barricade = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\barricade.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Loading tiles...");
+        loadTiles();
+
+        System.out.println("Loading map...");
         loadMap();
 
     }
 
-    public void checkCollision(){
+    public void loadTiles(){
 
-        for (int i = 0; i < mapHeight; i++) {
-            for (int j = 0; j < mapWidth; j++) {
+        try {
+            stone  = ImageIO.read(new File("stone.png"));
+            ground = ImageIO.read(new File("tegel.jpg"));
+            key = ImageIO.read(new File("key.png"));
+            barricade = ImageIO.read(new File("barricade.png"));
 
-                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 1)){
-
-                    if(player.isMovingLeft){
-                        player.setX(player.getX() + 40);
-                        player.isMovingLeft = false;
-                    }
-
-                    if(player.isMovingRight){
-                        player.setX(player.getX() -40);
-                        player.isMovingRight = false;
-                    }
-
-                    if(player.isMovingUp){
-                        player.setY(player.getY() + 40);
-                        player.isMovingUp = false;
-                    }
-
-                    if(player.isMovingDown){
-                        player.setY(player.getY() - 40);
-                        player.isMovingDown = false;
-                    }
-
-                }
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -116,8 +93,37 @@ public class Level {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("kok");
-        mapIsLoaded = true;
+    }
+
+    public void checkCollision(){
+
+        for (int i = 0; i < mapHeight; i++) {
+            for (int j = 0; j < mapWidth; j++) {
+
+                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 1)){
+
+                    if(player.isMovingLeft){
+                        player.setX(player.getX() + 40);
+                        player.isMovingLeft = false;
+                    }
+
+                    if(player.isMovingRight){
+                        player.setX(player.getX() -40);
+                        player.isMovingRight = false;
+                    }
+
+                    if(player.isMovingUp){
+                        player.setY(player.getY() + 40);
+                        player.isMovingUp = false;
+                    }
+
+                    if(player.isMovingDown){
+                        player.setY(player.getY() - 40);
+                        player.isMovingDown = false;
+                    }
+                }
+            }
+        }
     }
 
     public void update() {
@@ -130,7 +136,6 @@ public class Level {
 
     public void paint(Graphics2D g) {
 
-        if (mapIsLoaded) {
             for (int i = 0; i < mapHeight; i++) {
                 for (int j = 0; j < mapWidth; j++) {
 
@@ -150,7 +155,6 @@ public class Level {
                         g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
                     }
                 }
-            }
             player.paint(g);
         }
     }
