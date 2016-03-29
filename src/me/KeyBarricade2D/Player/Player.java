@@ -35,21 +35,17 @@ public class Player {
 
     public void registerMovement() {
 
-        if(isPressed(W) || isPressed(UP)) {
+        if(isPressed(W) || isPressed(UP))
             moveUp();
-        }
 
-        if(isPressed(A) || isPressed(LEFT)) {
+        if(isPressed(A) || isPressed(LEFT))
             moveLeft();
-        }
 
-        if(isPressed(S) || isPressed(DOWN)) {
+        if(isPressed(S) || isPressed(DOWN))
             moveDown();
-        }
 
-        if(isPressed(D) || isPressed(RIGHT)) {
+        if(isPressed(D) || isPressed(RIGHT))
             moveRight();
-        }
     }
 
     private void moveUp() {
