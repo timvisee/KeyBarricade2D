@@ -1,5 +1,5 @@
 package me.KeyBarricade2D.Level;
-
+import me.KeyBarricade2D.Level.Tiles.Key;
 import me.KeyBarricade2D.Level.Tiles.Tile;
 import me.KeyBarricade2D.Level.Tiles.Wall;
 import me.KeyBarricade2D.Player.Player;
@@ -18,7 +18,8 @@ public class Level {
     private Player player;
 
     private BufferedImage stone;
-    private BufferedImage grass;
+    private BufferedImage ground;
+    private BufferedImage key;
 
     private int mapWidth;
     private int mapHeight;
@@ -33,8 +34,9 @@ public class Level {
         player = new Player(210, 250, 40, 40);
 
         try {
-            stone  = ImageIO.read(getClass().getResourceAsStream("stone.png"));
-            grass = ImageIO.read(getClass().getResourceAsStream("grass.png"));
+            stone  = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\stone.png"));
+            ground = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\tegel.jpg"));
+            key = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\key.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -93,7 +95,7 @@ public class Level {
                     int x = Integer.parseInt(numbers[j]);
                     switch(x) {
                         case 0:
-                            map[i][j] = new Tile(grass, 0);
+                            map[i][j] = new Tile(ground, 0);
                             break;
                         case 1:
                             map[i][j] = new Wall(stone, 1);
@@ -101,9 +103,9 @@ public class Level {
 //                      case 2:
 //                            map[i][j] = new Barricade();
 //                            break;
-//                      case 3:
-//                            map[i][j] = new Key();
-//                            break;
+                      case 3:
+                            map[i][j] = new Key(key, 3);
+                            break;
                     }
 
                 }
@@ -134,6 +136,10 @@ public class Level {
                     }
 
                     if (map[i][j].tileType == 1) {
+                        g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
+                    }
+
+                    if (map[i][j].tileType == 3) {
                         g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
                     }
                 }
