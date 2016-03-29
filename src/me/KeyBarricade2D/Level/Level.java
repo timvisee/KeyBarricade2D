@@ -30,7 +30,7 @@ public class Level {
 
     public void start() {
 
-        player = new Player(210, 250, 40, 40);
+        player = new Player(210, 250);
 
         try {
             stone  = ImageIO.read(getClass().getResourceAsStream("stone.png"));
