@@ -8,6 +8,7 @@ import java.awt.*;
 public class GameStateManager {
 
     private Level level;
+    private boolean startPainting = false;
 
     public void update() {
 
@@ -21,10 +22,14 @@ public class GameStateManager {
     public void start() {
 
         this.level.start();
+
+        startPainting = true;
+
     }
 
     public void paint(Graphics2D g) {
 
+        if(startPainting)
         this.level.paint(g);
     }
 }
