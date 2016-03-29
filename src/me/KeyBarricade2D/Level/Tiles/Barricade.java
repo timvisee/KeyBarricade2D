@@ -12,10 +12,11 @@ public class Barricade extends Tile {
         this.image = image;
         this.tileType = tileType;
     }
-    public void remove(){
 
+    public void remove() {
+        //
     }
-    public void open(){
+    public void open() {
 
         //TODO first check if key has been picked up or is high enough.
         remove();

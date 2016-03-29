@@ -15,7 +15,7 @@ public class Main {
 
         manager.getGameStateManager().start();
 
-        while(true){
+        while(true) {
 
             manager.update();
 

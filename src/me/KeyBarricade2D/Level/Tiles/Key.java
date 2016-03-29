@@ -16,7 +16,7 @@ public class Key extends Tile {
         this.tileType = tileType;
     }
 
-    public void remove(){
+    public void remove() {
 
     }
 

@@ -1,4 +1,9 @@
 package me.KeyBarricade2D.Level;
+<<<<<<< HEAD
+=======
+
+import me.KeyBarricade2D.Level.Tiles.Barricade;
+>>>>>>> dev-nathanbakhuijzen
 import me.KeyBarricade2D.Level.Tiles.Key;
 import me.KeyBarricade2D.Level.Tiles.Tile;
 import me.KeyBarricade2D.Level.Tiles.Wall;
@@ -31,7 +36,7 @@ public class Level {
 
     public void start() {
 
-        player = new Player(210, 250, 40, 40);
+        player = new Player(210, 250);
 
         try {
             stone  = ImageIO.read(getClass().getResourceAsStream("Tiles\\Resources\\stone.png"));
@@ -44,29 +49,29 @@ public class Level {
 
     }
 
-    public void checkCollision(){
+    public void checkCollision() {
 
         for (int i = 0; i < mapHeight; i++) {
             for (int j = 0; j < mapWidth; j++) {
 
-                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 1)){
+                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 1)) {
 
-                    if(player.isMovingLeft){
+                    if(player.isMovingLeft) {
                         player.setX(player.getX() + 40);
                         player.isMovingLeft = false;
                     }
 
-                    if(player.isMovingRight){
+                    if(player.isMovingRight) {
                         player.setX(player.getX() -40);
                         player.isMovingRight = false;
                     }
 
-                    if(player.isMovingUp){
+                    if(player.isMovingUp) {
                         player.setY(player.getY() + 40);
                         player.isMovingUp = false;
                     }
 
-                    if(player.isMovingDown){
+                    if(player.isMovingDown) {
                         player.setY(player.getY() - 40);
                         player.isMovingDown = false;
                     }
@@ -76,7 +81,7 @@ public class Level {
         }
     }
 
-    public void loadMap(){
+    public void loadMap() {
 
         try {
             BufferedReader br = new BufferedReader(new FileReader("testmap.txt"));
@@ -94,6 +99,7 @@ public class Level {
 
                     int x = Integer.parseInt(numbers[j]);
                     switch(x) {
+<<<<<<< HEAD
                         case 0:
                             map[i][j] = new Tile(ground, 0);
                             break;
@@ -105,6 +111,19 @@ public class Level {
 //                            break;
                       case 3:
                             map[i][j] = new Key(key, 3);
+=======
+                        case 1:
+                            map[i][j] = new Wall(stone, 1);
+                            break;
+                        /*case 2:
+                            map[i][j] = new Barricade();
+                            break;
+                        case 3:
+                            map[i][j] = new Key();
+                            break;*/
+                        default:
+                            map[i][j] = new Tile(grass, 0);
+>>>>>>> dev-nathanbakhuijzen
                             break;
                     }
 
@@ -122,7 +141,6 @@ public class Level {
         player.registerMovement();
 
         checkCollision();
-
     }
 
     public void paint(Graphics2D g) {

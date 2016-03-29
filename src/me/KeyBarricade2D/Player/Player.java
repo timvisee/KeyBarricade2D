@@ -9,59 +9,89 @@ public class Player {
 
     private int x;
     private int y;
-    private int width;
-    private int height;
+    private final int width = 40;
+    private final int height = 40;
+    private final int distance = 40;
 
-    public boolean isMovingLeft =  false;
-    public boolean isMovingRight=  false;
-    public boolean isMovingUp =    false;
-    public boolean isMovingDown =  false;
+    public boolean isMovingUp = false;
+    public boolean isMovingLeft = false;
+    public boolean isMovingDown = false;
+    public boolean isMovingRight = false;
 
-    public Player(int x, int y, int width, int height){
+    private int W = KeyEvent.VK_W;
+    private int A = KeyEvent.VK_A;
+    private int S = KeyEvent.VK_S;
+    private int D = KeyEvent.VK_D;
 
+    private int UP = KeyEvent.VK_UP;
+    private int LEFT = KeyEvent.VK_LEFT;
+    private int DOWN = KeyEvent.VK_DOWN;
+    private int RIGHT = KeyEvent.VK_RIGHT;
+
+    public Player(int x, int y) {
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
     }
 
-    public void registerMovement(){
+    public void registerMovement() {
 
-        if(Input.isPressed(KeyEvent.VK_W) || Input.isPressed(KeyEvent.VK_UP)){
-            this.y -= 40;
-            Input.flush();
-            isMovingUp = true;
-            isMovingDown = false;
-            isMovingRight = false;
-            isMovingLeft = false;
-        }
+        if(isPressed(W) || isPressed(UP))
+            moveUp();
 
-        if(Input.isPressed(KeyEvent.VK_S) || Input.isPressed(KeyEvent.VK_DOWN)){
-            this.y += 40;
-            Input.flush();
-            isMovingUp = false;
-            isMovingDown = true;
-            isMovingRight = false;
-            isMovingLeft = false;
-        }
+        if(isPressed(A) || isPressed(LEFT))
+            moveLeft();
 
-        if(Input.isPressed(KeyEvent.VK_D) || Input.isPressed(KeyEvent.VK_RIGHT)){
-            this.x += 40;
-            Input.flush();
-            isMovingUp = false;
-            isMovingDown = false;
-            isMovingRight = true;
-            isMovingLeft = false;
-        }
+        if(isPressed(S) || isPressed(DOWN))
+            moveDown();
 
-        if(Input.isPressed(KeyEvent.VK_A) || Input.isPressed(KeyEvent.VK_LEFT)){
-            this.x -= 40;
-            Input.flush();
-            isMovingUp = false;
-            isMovingDown = false;
-            isMovingRight = false;
-            isMovingLeft = true;
+        if(isPressed(D) || isPressed(RIGHT))
+            moveRight();
+    }
+
+    private void moveUp() {
+        this.y -= distance;
+        Input.flush();
+        setMoving(0);
+    }
+
+    private void moveLeft() {
+        this.x -= distance;
+        Input.flush();
+        setMoving(1);
+    }
+
+    private void moveDown() {
+        this.y += distance;
+        Input.flush();
+        setMoving(2);
+    }
+
+    private void moveRight() {
+        this.x += distance;
+        Input.flush();
+        setMoving(3);
+    }
+
+    private boolean isPressed(int keycode) {
+        return Input.isPressed(keycode);
+    }
+
+    private void setMoving(int keycode) {
+        resetMoving();
+        switch(keycode) {
+            case 0: isMovingUp = true; break;
+            case 1: isMovingLeft = true; break;
+            case 2: isMovingDown = true; break;
+            case 3: isMovingRight = true; break;
+            default: break;
         }
+    }
+
+    private void resetMoving() {
+        isMovingUp = false;
+        isMovingLeft = false;
+        isMovingDown = false;
+        isMovingRight = false;
     }
 
     public int getX() {
@@ -80,8 +110,7 @@ public class Player {
         this.y = y;
     }
 
-    public void paint(Graphics2D g){
+    public void paint(Graphics2D g) {
         g.fillRect(x, y, width, height);
     }
-
 }
