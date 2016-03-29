@@ -23,37 +23,36 @@ public class Level {
     private int mapHeight;
 
     private int tileSize = 40;
+    private int currentLevel = 1;
 
     public void start() {
 
         player = new Player(210, 250);
 
-        System.out.println("Loading tiles...");
         loadTiles();
-
-        System.out.println("Loading map...");
         loadMap();
-
     }
 
     public void loadTiles(){
-
         try {
-            stone       = ImageIO.read(new File("Resources/stone.png"));
-            ground      = ImageIO.read(new File("Resources/tegel.jpg"));
-            key         = ImageIO.read(new File("Resources/key.png"));
-            barricade   = ImageIO.read(new File("Resources/barricade.png"));
-            goal        = ImageIO.read(new File("Resources/goal.png"));
+            stone       = ImageIO.read(new File("Resources/Images/stone.png"));
+            ground      = ImageIO.read(new File("Resources/Images/tegel.jpg"));
+            key         = ImageIO.read(new File("Resources/Images/key.png"));
+            barricade   = ImageIO.read(new File("Resources/Images/barricade.png"));
+            goal        = ImageIO.read(new File("Resources/Images/goal.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("3. Loaded Tiles!");
     }
 
     public void loadMap(){
 
+        String level = "Resources/Maps/Level" + currentLevel + ".txt";
+
         try {
-            BufferedReader br = new BufferedReader(new FileReader("testmap.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(level));
 
             mapWidth = Integer.parseInt(br.readLine());
             mapHeight = Integer.parseInt(br.readLine());
@@ -89,6 +88,7 @@ public class Level {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("4. Loaded Map!");
     }
 
     public void checkCollision(){
@@ -117,6 +117,13 @@ public class Level {
                         player.setY(player.getY() - 40);
                         player.isMovingDown = false;
                     }
+                }
+
+                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 4)){
+                    currentLevel++;
+                    loadMap();
+                    player.setX(90);
+                    player.setY(90);
                 }
             }
         }
