@@ -13,6 +13,7 @@ public class Goal extends Tile {
         this.tileType = tileType;
     }
 
-    public void finish(){
+    public void finish() {
+        //
     }
 }

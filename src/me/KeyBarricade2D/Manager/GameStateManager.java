@@ -14,11 +14,11 @@ public class GameStateManager {
         this.level.update();
     }
 
-    public void loadLevel(Level level){
+    public void loadLevel(Level level) {
         this.level = level;
     }
 
-    public void start(){
+    public void start() {
 
         this.level.start();
     }

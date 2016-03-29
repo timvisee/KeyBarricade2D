@@ -9,13 +9,13 @@ public class FramePanel extends JPanel {
 
     private GameStateManager gsm;
 
-    public FramePanel(GameStateManager gsm){
+    public FramePanel(GameStateManager gsm) {
 
         this.gsm = gsm;
     }
 
 
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
 
