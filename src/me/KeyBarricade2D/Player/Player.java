@@ -47,52 +47,59 @@ public class Player {
 
     public void registerMovement() {
 
-        if(isPressed(W) || isPressed(UP))
-            move(0);
+        if (isPressed(W) || isPressed(UP)) {
+            move(UP);
+            setMoving(UP);
+        }
 
-        if(isPressed(A) || isPressed(LEFT))
-            move(1);
+        if (isPressed(A) || isPressed(LEFT)) {
+            move(LEFT);
+            setMoving(LEFT);
+        }
 
-        if(isPressed(S) || isPressed(DOWN))
-            move(2);
+        if(isPressed(S) || isPressed(DOWN)) {
+            move(DOWN);
+            setMoving(DOWN);
+        }
 
-        if(isPressed(D) || isPressed(RIGHT))
-            move(3);
-    }
-
-    private void move(int move) {
-        switch(move) {
-            case 0: this.y -= distance; Input.flush(); setMoving(0); break;
-            case 1: this.x -= distance; Input.flush(); setMoving(1); break;
-            case 2: this.y += distance; Input.flush(); setMoving(2); break;
-            case 3: this.x += distance; Input.flush(); setMoving(3); break;
-            default: break;
+        if(isPressed(D) || isPressed(RIGHT)) {
+            move(RIGHT);
+            setMoving(RIGHT);
         }
     }
 
-    private boolean isPressed(int keycode) {
-        return Input.isPressed(keycode);
+    private void move(int keycode) {
+        switch(keycode) {
+            case KeyEvent.VK_UP:    this.y -= distance; break;
+            case KeyEvent.VK_LEFT:  this.x -= distance; break;
+            case KeyEvent.VK_DOWN:  this.y += distance; break;
+            case KeyEvent.VK_RIGHT: this.x += distance; break;
+            default: break;
+        }
+        Input.flush();
     }
 
     private void setMoving(int keycode) {
         resetMoving();
         switch(keycode) {
-            case 0: isMovingUp = true; break;
-            case 1: isMovingLeft = true; break;
-            case 2: isMovingDown = true; break;
-            case 3: isMovingRight = true; break;
+            case KeyEvent.VK_UP:    isMovingUp    = true; break;
+            case KeyEvent.VK_LEFT:  isMovingLeft  = true; break;
+            case KeyEvent.VK_DOWN:  isMovingDown  = true; break;
+            case KeyEvent.VK_RIGHT: isMovingRight = true; break;
             default: break;
         }
     }
 
     private void resetMoving() {
-        isMovingUp = false;
-        isMovingLeft = false;
-        isMovingDown = false;
+        isMovingUp    = false;
+        isMovingLeft  = false;
+        isMovingDown  = false;
         isMovingRight = false;
     }
 
-    public void resetPlayer(){}
+    private boolean isPressed(int keycode) {
+        return Input.isPressed(keycode);
+    }
 
     public int getX() {
         return x;
