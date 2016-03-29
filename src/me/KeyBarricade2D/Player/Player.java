@@ -33,7 +33,7 @@ public class Player {
         this.y = y;
     }
 
-    public void registerMovement(){
+    public void registerMovement() {
 
         if(isPressed(W) || isPressed(UP)) {
             moveUp();
@@ -108,8 +108,7 @@ public class Player {
         this.y = y;
     }
 
-    public void paint(Graphics2D g){
+    public void paint(Graphics2D g) {
         g.fillRect(x, y, width, height);
     }
-
 }
