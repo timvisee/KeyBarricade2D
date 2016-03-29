@@ -70,16 +70,16 @@ public class Level {
                     int x = Integer.parseInt(numbers[j]);
                     switch(x) {
                         case 0:
-                            map[i][j] = new Tile(ground, 0);
+                            map[i][j] = new Tile(ground);
                             break;
                         case 1:
-                            map[i][j] = new Wall(stone, 1);
+                            map[i][j] = new Wall(stone);
                             break;
                         case 2:
-                            map[i][j] = new Barricade(barricade, 2);
+                            map[i][j] = new Barricade(barricade);
                             break;
                         case 3:
-                            map[i][j] = new Key(key, 3);
+                            map[i][j] = new Key(key);
                             break;
                     }
                 }
@@ -132,8 +132,8 @@ public class Level {
                 for (int j = 0; j < mapWidth; j++) {
 
                         g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
-
                 }
+
             player.paint(g);
         }
     }

@@ -5,12 +5,11 @@ import java.awt.image.BufferedImage;
 public class Goal extends Tile {
 
     private BufferedImage image;
-    public int tileType;
+    public final int TILETYPE = 4;
 
-    public Goal(BufferedImage image, int tileType) {
-        super(image, tileType);
+    public Goal(BufferedImage image) {
+        super(image);
         this.image = image;
-        this.tileType = tileType;
     }
 
     public void finish() {

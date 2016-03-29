@@ -8,17 +8,14 @@ public class Key extends Tile {
 
     private BufferedImage image;
 
-    public int tileType;
-
-    public Key(BufferedImage image, int tileType) {
-        super(image, tileType);
+    public Key(BufferedImage image) {
+        super(image);
         this.image = image;
-        this.tileType = tileType;
+
+        tileType = 3;
     }
 
-    public void remove() {
-
-    }
+    public void remove() {}
 
     public int getDurability() {
         return durability;

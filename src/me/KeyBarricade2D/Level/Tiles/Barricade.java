@@ -5,12 +5,12 @@ import java.awt.image.BufferedImage;
 public class Barricade extends Tile {
 
     private BufferedImage image;
-    public int tileType;
 
-    public Barricade(BufferedImage image, int tileType) {
-        super(image, tileType);
+    public Barricade(BufferedImage image) {
+        super(image);
         this.image = image;
-        this.tileType = tileType;
+
+        tileType = 2;
     }
 
     public void remove() {

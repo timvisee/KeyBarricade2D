@@ -5,12 +5,12 @@ import java.awt.image.BufferedImage;
 public class Wall extends Tile {
 
     private BufferedImage image;
-    public int tileType;
 
-    public Wall(BufferedImage image, int tileType) {
-        super(image, tileType);
+    public Wall(BufferedImage image) {
+        super(image);
         this.image = image;
-        this.tileType = tileType;
+
+        tileType = 1;
     }
 
     @Override
@@ -22,4 +22,6 @@ public class Wall extends Tile {
     public void setImage(BufferedImage image) {
         this.image = image;
     }
+
+
 }
