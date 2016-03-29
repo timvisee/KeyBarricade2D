@@ -3,6 +3,9 @@ package me.KeyBarricade2D.Level;
 =======
 
 import me.KeyBarricade2D.Level.Tiles.Barricade;
+<<<<<<< HEAD
+>>>>>>> dev-nathanbakhuijzen
+=======
 >>>>>>> dev-nathanbakhuijzen
 import me.KeyBarricade2D.Level.Tiles.Key;
 import me.KeyBarricade2D.Level.Tiles.Tile;
@@ -100,6 +103,7 @@ public class Level {
                     int x = Integer.parseInt(numbers[j]);
                     switch(x) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                         case 0:
                             map[i][j] = new Tile(ground, 0);
                             break;
@@ -115,6 +119,11 @@ public class Level {
                         case 1:
                             map[i][j] = new Wall(stone, 1);
                             break;
+=======
+                        case 1:
+                            map[i][j] = new Wall(stone, 1);
+                            break;
+>>>>>>> dev-nathanbakhuijzen
                         /*case 2:
                             map[i][j] = new Barricade();
                             break;
@@ -123,6 +132,9 @@ public class Level {
                             break;*/
                         default:
                             map[i][j] = new Tile(grass, 0);
+<<<<<<< HEAD
+>>>>>>> dev-nathanbakhuijzen
+=======
 >>>>>>> dev-nathanbakhuijzen
                             break;
                     }
