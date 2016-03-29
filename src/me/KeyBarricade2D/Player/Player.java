@@ -2,8 +2,12 @@ package me.KeyBarricade2D.Player;
 
 import me.KeyBarricade2D.input.Input;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Player {
 
@@ -28,9 +32,17 @@ public class Player {
     private int DOWN = KeyEvent.VK_DOWN;
     private int RIGHT = KeyEvent.VK_RIGHT;
 
+    private BufferedImage image;
+
     public Player(int x, int y) {
         this.x = x;
         this.y = y;
+
+        try {
+            image = ImageIO.read(new File("Resources/player.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void registerMovement() {
@@ -111,6 +123,6 @@ public class Player {
     }
 
     public void paint(Graphics2D g) {
-        g.fillRect(x, y, width, height);
+        g.drawImage(image, x, y, width, height, null);
     }
 }
