@@ -88,35 +88,17 @@ public class Player {
 
     private Tile Tile(int keycode) {
 
-        // Current position
         int i = (this.x - 10) / 40;
         int j = (this.y - 10) / 40;
 
-        //System.out.println("Current position: x[" + this.x + "] y[" + this.y + "]");
-        System.out.println("Current i[" + i + "] j[" + j + "] type:[" + level.map[i][j].tileType + "]");
-
         switch(keycode) {
-            case KeyEvent.VK_UP:
-                // move char up
-                j--;
-                break;
-            case KeyEvent.VK_LEFT:
-                // move char left
-                i--;
-                break;
-            case KeyEvent.VK_DOWN:
-                // move char down
-                j++;
-                break;
-            case KeyEvent.VK_RIGHT:
-                // move char right
-                i++;
-                break;
+            case KeyEvent.VK_UP:    j--; break;
+            case KeyEvent.VK_LEFT:  i--; break;
+            case KeyEvent.VK_DOWN:  j++; break;
+            case KeyEvent.VK_RIGHT: i++; break;
         }
 
-        System.out.println("Next    i[" + i + "] j[" + j + "] type:[" + level.map[i][j].tileType + "]");
-
-        return this.level.map[i][j];
+        return this.level.map[j][i];
     }
 
     public void setLevel(Level level) {
