@@ -68,9 +68,6 @@ public class Level {
 
                     int x = Integer.parseInt(numbers[j]);
                     switch(x) {
-                        case 0:
-                            map[i][j] = new Tile(ground);
-                            break;
                         case 1:
                             map[i][j] = new Wall(stone);
                             break;
@@ -82,6 +79,9 @@ public class Level {
                             break;
                         case 4:
                             map[i][j] = new Goal(goal);
+                            break;
+                        default:
+                            map[i][j] = new Tile(ground);
                             break;
                     }
                 }

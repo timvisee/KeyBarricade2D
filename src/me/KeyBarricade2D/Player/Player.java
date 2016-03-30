@@ -68,20 +68,28 @@ public class Player {
     public void move(int keycode) {
         switch(keycode) {
             case KeyEvent.VK_UP:
-                System.out.println(Tile(UP).tileType);
-                this.y -= distance;
+                if(Tile(UP).isPassable()) {
+                    System.out.println(Tile(UP).tileType);
+                    this.y -= distance;
+                }
                 break;
             case KeyEvent.VK_LEFT:
-                System.out.println(Tile(LEFT).tileType);
-                this.x -= distance;
+                if(Tile(LEFT).isPassable()) {
+                    System.out.println(Tile(LEFT).tileType);
+                    this.x -= distance;
+                }
                 break;
             case KeyEvent.VK_DOWN:
-                System.out.println(Tile(DOWN).tileType);
-                this.y += distance;
+                if(Tile(DOWN).isPassable()) {
+                    System.out.println(Tile(DOWN).tileType);
+                    this.y += distance;
+                }
                 break;
             case KeyEvent.VK_RIGHT:
-                System.out.println(Tile(RIGHT).tileType);
-                this.x += distance;
+                if(Tile(RIGHT).isPassable()) {
+                    System.out.println(Tile(RIGHT).tileType);
+                    this.x += distance;
+                }
                 break;
             default: break;
         }
