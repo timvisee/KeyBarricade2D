@@ -103,6 +103,11 @@ public class Player {
         Input.flush();
     }
 
+    public void resetPos(){
+        x = 50;
+        y = 450;
+    }
+
     private Tile Tile(int keycode) {
 
         int i= (this.x - 10) / 40;

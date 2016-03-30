@@ -106,6 +106,9 @@ public class Level {
 
     public void checkGoal() {
         if(player.currentTile(4)) {
+            currentLevel++;
+            loadMap();
+            player.resetPos();
         }
     }
 
