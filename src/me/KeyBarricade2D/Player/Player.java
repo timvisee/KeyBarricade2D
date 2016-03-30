@@ -1,6 +1,7 @@
 package me.KeyBarricade2D.Player;
 
 import me.KeyBarricade2D.Level.Level;
+import me.KeyBarricade2D.Level.Tiles.Tile;
 import me.KeyBarricade2D.input.Input;
 
 import javax.imageio.ImageIO;
@@ -66,10 +67,22 @@ public class Player {
 
     public void move(int keycode) {
         switch(keycode) {
-            case KeyEvent.VK_UP:    this.y -= distance; break;
-            case KeyEvent.VK_LEFT:  this.x -= distance; break;
-            case KeyEvent.VK_DOWN:  this.y += distance; break;
-            case KeyEvent.VK_RIGHT: this.x += distance; break;
+            case KeyEvent.VK_UP:
+                System.out.println(Tile(UP).tileType);
+                this.y -= distance;
+                break;
+            case KeyEvent.VK_LEFT:
+                System.out.println(Tile(LEFT).tileType);
+                this.x -= distance;
+                break;
+            case KeyEvent.VK_DOWN:
+                System.out.println(Tile(DOWN).tileType);
+                this.y += distance;
+                break;
+            case KeyEvent.VK_RIGHT:
+                System.out.println(Tile(RIGHT).tileType);
+                this.x += distance;
+                break;
             default: break;
         }
         Input.flush();
@@ -93,6 +106,21 @@ public class Player {
         isMovingLeft  = false;
         isMovingDown  = false;
         isMovingRight = false;
+    }
+
+    private Tile Tile(int keycode) {
+        int i = (x - 10) / 40;
+        int j = (y - 10) / 40;
+
+        switch(keycode) {
+            case KeyEvent.VK_UP: j--; break;
+            case KeyEvent.VK_LEFT: i--; break;
+            case KeyEvent.VK_DOWN: j++; break;
+            case KeyEvent.VK_RIGHT: i++; break;
+            default: break;
+        }
+
+        return this.level.map[i][j];
     }
 
     private boolean isPressed(int keycode) {
