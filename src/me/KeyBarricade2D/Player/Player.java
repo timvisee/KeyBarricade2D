@@ -1,6 +1,7 @@
 package me.KeyBarricade2D.Player;
 
 import me.KeyBarricade2D.Level.Level;
+import me.KeyBarricade2D.Level.Tiles.Key;
 import me.KeyBarricade2D.Level.Tiles.Tile;
 import me.KeyBarricade2D.input.Input;
 
@@ -22,6 +23,8 @@ public class Player {
 
     private BufferedImage image;
     private Level level;
+
+    private Key key;
 
     private int W     = KeyEvent.VK_W;
     private int A     = KeyEvent.VK_A;
@@ -65,6 +68,7 @@ public class Player {
             case KeyEvent.VK_UP:
                 if(Tile(UP).isPassable()) {
                     this.y -= MOVE_DISTANCE;
+
                 }
                 break;
             case KeyEvent.VK_LEFT:
@@ -99,6 +103,18 @@ public class Player {
         }
 
         return this.level.map[j][i];
+    }
+
+    public boolean currentTile(int type) {
+
+        int i = (this.y - 10) / 40;
+        int j = (this.x - 10) / 40;
+
+        if(this.level.map[i][j].tileType == type) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void setLevel(Level level) {
