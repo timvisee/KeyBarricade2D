@@ -13,30 +13,25 @@ import java.io.IOException;
 
 public class Player {
 
+    private final int WIDTH = 40;
+    private final int HEIGHT = 40;
+    private final int MOVE_DISTANCE = 40;
+
     private int x;
     private int y;
-    private final int width = 40;
-    private final int height = 40;
-    private final int distance = 40;
-
-    public boolean isMovingUp = false;
-    public boolean isMovingLeft = false;
-    public boolean isMovingDown = false;
-    public boolean isMovingRight = false;
-
-    private int W = KeyEvent.VK_W;
-    private int A = KeyEvent.VK_A;
-    private int S = KeyEvent.VK_S;
-    private int D = KeyEvent.VK_D;
-
-    private int UP = KeyEvent.VK_UP;
-    private int LEFT = KeyEvent.VK_LEFT;
-    private int DOWN = KeyEvent.VK_DOWN;
-    private int RIGHT = KeyEvent.VK_RIGHT;
-
-    private Level level;
 
     private BufferedImage image;
+    private Level level;
+
+    private int W     = KeyEvent.VK_W;
+    private int A     = KeyEvent.VK_A;
+    private int S     = KeyEvent.VK_S;
+    private int D     = KeyEvent.VK_D;
+
+    private int UP    = KeyEvent.VK_UP;
+    private int LEFT  = KeyEvent.VK_LEFT;
+    private int DOWN  = KeyEvent.VK_DOWN;
+    private int RIGHT = KeyEvent.VK_RIGHT;
 
     public Player(int x, int y, Level level) {
         this.x = x;
@@ -69,47 +64,26 @@ public class Player {
         switch(keycode) {
             case KeyEvent.VK_UP:
                 if(Tile(UP).isPassable()) {
-                    this.y -= distance;
+                    this.y -= MOVE_DISTANCE;
                 }
                 break;
             case KeyEvent.VK_LEFT:
                 if(Tile(LEFT).isPassable()) {
-                    this.x -= distance;
+                    this.x -= MOVE_DISTANCE;
                 }
                 break;
             case KeyEvent.VK_DOWN:
                 if(Tile(DOWN).isPassable()) {
-                    this.y += distance;
+                    this.y += MOVE_DISTANCE;
                 }
                 break;
             case KeyEvent.VK_RIGHT:
                 if(Tile(RIGHT).isPassable()) {
-                    this.x += distance;
+                    this.x += MOVE_DISTANCE;
                 }
                 break;
-            default: break;
         }
         Input.flush();
-        resetMoving();
-        setMoving(keycode);
-    }
-
-    private void setMoving(int keycode) {
-        resetMoving();
-        switch(keycode) {
-            case KeyEvent.VK_UP:    isMovingUp    = true; break;
-            case KeyEvent.VK_LEFT:  isMovingLeft  = true; break;
-            case KeyEvent.VK_DOWN:  isMovingDown  = true; break;
-            case KeyEvent.VK_RIGHT: isMovingRight = true; break;
-            default: break;
-        }
-    }
-
-    private void resetMoving() {
-        isMovingUp    = false;
-        isMovingLeft  = false;
-        isMovingDown  = false;
-        isMovingRight = false;
     }
 
     private Tile Tile(int keycode) {
@@ -170,6 +144,6 @@ public class Player {
     }
 
     public void paint(Graphics2D g) {
-        g.drawImage(image, x, y, width, height, null);
+        g.drawImage(image, x, y, WIDTH, HEIGHT, null);
     }
 }
