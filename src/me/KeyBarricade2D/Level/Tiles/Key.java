@@ -26,6 +26,11 @@ public class Key extends Tile {
     }
 
     @Override
+    public boolean isPassable() {
+        return true;
+    }
+
+    @Override
     public BufferedImage getImage() {
         return image;
     }

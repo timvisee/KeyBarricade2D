@@ -23,6 +23,11 @@ public class Barricade extends Tile {
     }
 
     @Override
+    public boolean isPassable() {
+        return false;
+    }
+
+    @Override
     public BufferedImage getImage() {
         return image;
     }

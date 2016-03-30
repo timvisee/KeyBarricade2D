@@ -10,6 +10,10 @@ public class Tile {
         this.image = image;
     }
 
+    public boolean isPassable() {
+        return true;
+    }
+
     public BufferedImage getImage() {
         return image;
     }

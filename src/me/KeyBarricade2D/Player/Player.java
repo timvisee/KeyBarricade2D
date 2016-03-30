@@ -1,6 +1,7 @@
 package me.KeyBarricade2D.Player;
 
 import me.KeyBarricade2D.Level.Level;
+import me.KeyBarricade2D.Level.Tiles.Tile;
 import me.KeyBarricade2D.input.Input;
 
 import javax.imageio.ImageIO;
@@ -12,30 +13,25 @@ import java.io.IOException;
 
 public class Player {
 
+    private final int WIDTH = 40;
+    private final int HEIGHT = 40;
+    private final int MOVE_DISTANCE = 40;
+
     private int x;
     private int y;
-    private final int width = 40;
-    private final int height = 40;
-    private final int distance = 40;
-
-    public boolean isMovingUp = false;
-    public boolean isMovingLeft = false;
-    public boolean isMovingDown = false;
-    public boolean isMovingRight = false;
-
-    private int W = KeyEvent.VK_W;
-    private int A = KeyEvent.VK_A;
-    private int S = KeyEvent.VK_S;
-    private int D = KeyEvent.VK_D;
-
-    private int UP = KeyEvent.VK_UP;
-    private int LEFT = KeyEvent.VK_LEFT;
-    private int DOWN = KeyEvent.VK_DOWN;
-    private int RIGHT = KeyEvent.VK_RIGHT;
-
-    private Level level;
 
     private BufferedImage image;
+    private Level level;
+
+    private int W     = KeyEvent.VK_W;
+    private int A     = KeyEvent.VK_A;
+    private int S     = KeyEvent.VK_S;
+    private int D     = KeyEvent.VK_D;
+
+    private int UP    = KeyEvent.VK_UP;
+    private int LEFT  = KeyEvent.VK_LEFT;
+    private int DOWN  = KeyEvent.VK_DOWN;
+    private int RIGHT = KeyEvent.VK_RIGHT;
 
     public Player(int x, int y, Level level) {
         this.x = x;
@@ -66,56 +62,54 @@ public class Player {
 
     public void move(int keycode) {
         switch(keycode) {
-            case KeyEvent.VK_UP:    this.y -= distance; break;
-            case KeyEvent.VK_LEFT:  this.x -= distance; break;
-            case KeyEvent.VK_DOWN:  this.y += distance; break;
-            case KeyEvent.VK_RIGHT: this.x += distance; break;
-            default: break;
+            case KeyEvent.VK_UP:
+                if(Tile(UP).isPassable()) {
+                    this.y -= MOVE_DISTANCE;
+                }
+                break;
+            case KeyEvent.VK_LEFT:
+                if(Tile(LEFT).isPassable()) {
+                    this.x -= MOVE_DISTANCE;
+                }
+                break;
+            case KeyEvent.VK_DOWN:
+                if(Tile(DOWN).isPassable()) {
+                    this.y += MOVE_DISTANCE;
+                }
+                break;
+            case KeyEvent.VK_RIGHT:
+                if(Tile(RIGHT).isPassable()) {
+                    this.x += MOVE_DISTANCE;
+                }
+                break;
         }
         Input.flush();
-        resetMoving();
-        setMoving(keycode);
     }
 
-    private void setMoving(int keycode) {
-        resetMoving();
+    private Tile Tile(int keycode) {
+
+        int i = (this.x - 10) / 40;
+        int j = (this.y - 10) / 40;
+
         switch(keycode) {
-            case KeyEvent.VK_UP:    isMovingUp    = true; break;
-            case KeyEvent.VK_LEFT:  isMovingLeft  = true; break;
-            case KeyEvent.VK_DOWN:  isMovingDown  = true; break;
-            case KeyEvent.VK_RIGHT: isMovingRight = true; break;
-            default: break;
+            case KeyEvent.VK_UP:    j--; break;
+            case KeyEvent.VK_LEFT:  i--; break;
+            case KeyEvent.VK_DOWN:  j++; break;
+            case KeyEvent.VK_RIGHT: i++; break;
         }
+
+        return this.level.map[j][i];
     }
 
-    private void resetMoving() {
-        isMovingUp    = false;
-        isMovingLeft  = false;
-        isMovingDown  = false;
-        isMovingRight = false;
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
     private boolean isPressed(int keycode) {
         return Input.isPressed(keycode);
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
     public void paint(Graphics2D g) {
-        g.drawImage(image, x, y, width, height, null);
+        g.drawImage(image, x, y, WIDTH, HEIGHT, null);
     }
 }

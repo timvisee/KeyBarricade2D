@@ -9,7 +9,7 @@ import java.io.*;
 
 public class Level {
 
-    private Tile [][] map;
+    public Tile [][] map;
 
     private Player player;
 
@@ -27,10 +27,10 @@ public class Level {
 
     public void start() {
 
-        player = new Player(210, 250, this);
-
         loadTiles();
         loadMap();
+
+        player = new Player(210, 250, this);
     }
 
     public void loadTiles(){
@@ -68,9 +68,6 @@ public class Level {
 
                     int x = Integer.parseInt(numbers[j]);
                     switch(x) {
-                        case 0:
-                            map[i][j] = new Tile(ground);
-                            break;
                         case 1:
                             map[i][j] = new Wall(stone);
                             break;
@@ -83,6 +80,9 @@ public class Level {
                         case 4:
                             map[i][j] = new Goal(goal);
                             break;
+                        default:
+                            map[i][j] = new Tile(ground);
+                            break;
                     }
                 }
             }
@@ -92,48 +92,9 @@ public class Level {
         System.out.println("Loaded Map!");
     }
 
-    public void checkCollision(){
-
-        for (int i = 0; i < mapHeight; i++) {
-            for (int j = 0; j < mapWidth; j++) {
-
-                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 1)){
-
-                    if(player.isMovingLeft){
-                        player.setX(player.getX() + 40);
-                        player.isMovingLeft = false;
-                    }
-
-                    if(player.isMovingRight){
-                        player.setX(player.getX() -40);
-                        player.isMovingRight = false;
-                    }
-
-                    if(player.isMovingUp){
-                        player.setY(player.getY() + 40);
-                        player.isMovingUp = false;
-                    }
-
-                    if(player.isMovingDown){
-                        player.setY(player.getY() - 40);
-                        player.isMovingDown = false;
-                    }
-                }
-
-                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 4)){
-                    currentLevel++;
-                    loadMap();
-                    player.setX(50);
-                    player.setY(410);
-                }
-            }
-        }
-    }
-
     public void update() {
 
         player.registerMovement();
-        checkCollision();
     }
 
     public void paint(Graphics2D g) {
@@ -142,7 +103,7 @@ public class Level {
             for (int j = 0; j < mapWidth; j++) {
                 g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
             }
-        player.paint(g);
+            player.paint(g);
         }
     }
 }
