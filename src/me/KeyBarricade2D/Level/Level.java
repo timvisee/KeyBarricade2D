@@ -1,4 +1,5 @@
 package me.KeyBarricade2D.Level;
+
 import me.KeyBarricade2D.Level.Tiles.*;
 import me.KeyBarricade2D.Player.Player;
 
@@ -9,7 +10,7 @@ import java.io.*;
 
 public class Level {
 
-    public Tile [][] map;
+    public Tile[][] map;
 
     private Player player;
 
@@ -31,6 +32,7 @@ public class Level {
         loadMap();
 
         player = new Player(210, 250, this);
+
     }
 
     public void loadTiles(){
@@ -92,9 +94,35 @@ public class Level {
         System.out.println("Loaded Map!");
     }
 
+    public void checkBarricade() {
+        if(player.currentTile(2)) {
+            if(player.key.obtained) {
+                map[player.yPos][player.xPos] = new Tile(ground);
+                System.out.println(player.xPos + " " + player.yPos);
+                player.key.obtained = false;
+            }
+        }
+    }
+
+    public void checkGoal() {
+        if(player.currentTile(4)) {
+        }
+    }
+
+    public void checkKeys() {
+
+        if(player.currentTile(3)) {
+            player.key.obtained = true;
+            map[player.yPos][player.xPos] = new Tile(ground);
+        }
+    }
+
     public void update() {
 
         player.registerMovement();
+        checkKeys();
+        checkBarricade();
+        checkGoal();
     }
 
     public void paint(Graphics2D g) {

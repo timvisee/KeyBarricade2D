@@ -4,9 +4,8 @@ import java.awt.image.BufferedImage;
 
 public class Key extends Tile {
 
-    private int durability = 0;
-
     private BufferedImage image;
+    public boolean obtained = false;
 
     public Key(BufferedImage image) {
         super(image);
@@ -15,15 +14,20 @@ public class Key extends Tile {
         tileType = 3;
     }
 
+    public Key() {
+        tileType = 3;
+    }
+
+    public void pickedUp(boolean b) {
+
+        obtained = b;
+    }
+
+    public void grab() {
+
+    }
+
     public void remove() {}
-
-    public int getDurability() {
-        return durability;
-    }
-
-    public void setDurability(int durability) {
-        this.durability = durability;
-    }
 
     @Override
     public boolean isPassable() {
