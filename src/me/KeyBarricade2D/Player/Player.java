@@ -1,5 +1,6 @@
 package me.KeyBarricade2D.Player;
 
+import me.KeyBarricade2D.Level.Level;
 import me.KeyBarricade2D.input.Input;
 
 import javax.imageio.ImageIO;
@@ -32,11 +33,14 @@ public class Player {
     private int DOWN = KeyEvent.VK_DOWN;
     private int RIGHT = KeyEvent.VK_RIGHT;
 
+    private Level level;
+
     private BufferedImage image;
 
-    public Player(int x, int y) {
+    public Player(int x, int y, Level level) {
         this.x = x;
         this.y = y;
+        this.level = level;
 
         try {
             image = ImageIO.read(new File("Resources/Images/player.png"));
@@ -48,65 +52,52 @@ public class Player {
     public void registerMovement() {
 
         if(isPressed(W) || isPressed(UP))
-            moveUp();
+            move(UP);
 
         if(isPressed(A) || isPressed(LEFT))
-            moveLeft();
+            move(LEFT);
 
         if(isPressed(S) || isPressed(DOWN))
-            moveDown();
+            move(DOWN);
 
         if(isPressed(D) || isPressed(RIGHT))
-            moveRight();
+            move(RIGHT);
     }
 
-    private void moveUp() {
-        this.y -= distance;
+    public void move(int keycode) {
+        switch(keycode) {
+            case KeyEvent.VK_UP:    this.y -= distance; break;
+            case KeyEvent.VK_LEFT:  this.x -= distance; break;
+            case KeyEvent.VK_DOWN:  this.y += distance; break;
+            case KeyEvent.VK_RIGHT: this.x += distance; break;
+            default: break;
+        }
         Input.flush();
-        setMoving(0);
-    }
-
-    private void moveLeft() {
-        this.x -= distance;
-        Input.flush();
-        setMoving(1);
-    }
-
-    private void moveDown() {
-        this.y += distance;
-        Input.flush();
-        setMoving(2);
-    }
-
-    private void moveRight() {
-        this.x += distance;
-        Input.flush();
-        setMoving(3);
-    }
-
-    private boolean isPressed(int keycode) {
-        return Input.isPressed(keycode);
+        resetMoving();
+        setMoving(keycode);
     }
 
     private void setMoving(int keycode) {
         resetMoving();
         switch(keycode) {
-            case 0: isMovingUp = true; break;
-            case 1: isMovingLeft = true; break;
-            case 2: isMovingDown = true; break;
-            case 3: isMovingRight = true; break;
+            case KeyEvent.VK_UP:    isMovingUp    = true; break;
+            case KeyEvent.VK_LEFT:  isMovingLeft  = true; break;
+            case KeyEvent.VK_DOWN:  isMovingDown  = true; break;
+            case KeyEvent.VK_RIGHT: isMovingRight = true; break;
             default: break;
         }
     }
 
     private void resetMoving() {
-        isMovingUp = false;
-        isMovingLeft = false;
-        isMovingDown = false;
+        isMovingUp    = false;
+        isMovingLeft  = false;
+        isMovingDown  = false;
         isMovingRight = false;
     }
 
-    public void resetPlayer(){}
+    private boolean isPressed(int keycode) {
+        return Input.isPressed(keycode);
+    }
 
     public int getX() {
         return x;

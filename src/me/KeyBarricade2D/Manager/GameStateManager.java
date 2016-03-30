@@ -1,6 +1,5 @@
 package me.KeyBarricade2D.Manager;
 
-
 import me.KeyBarricade2D.Level.Level;
 
 import java.awt.*;
