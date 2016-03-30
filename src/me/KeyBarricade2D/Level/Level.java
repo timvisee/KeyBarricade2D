@@ -133,7 +133,7 @@ public class Level {
     public void update() {
 
         player.registerMovement();
-        checkCollision();
+        //checkCollision();
     }
 
     public void paint(Graphics2D g) {

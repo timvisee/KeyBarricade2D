@@ -69,25 +69,21 @@ public class Player {
         switch(keycode) {
             case KeyEvent.VK_UP:
                 if(Tile(UP).isPassable()) {
-                    System.out.println(Tile(UP).tileType);
                     this.y -= distance;
                 }
                 break;
             case KeyEvent.VK_LEFT:
                 if(Tile(LEFT).isPassable()) {
-                    System.out.println(Tile(LEFT).tileType);
                     this.x -= distance;
                 }
                 break;
             case KeyEvent.VK_DOWN:
                 if(Tile(DOWN).isPassable()) {
-                    System.out.println(Tile(DOWN).tileType);
                     this.y += distance;
                 }
                 break;
             case KeyEvent.VK_RIGHT:
                 if(Tile(RIGHT).isPassable()) {
-                    System.out.println(Tile(RIGHT).tileType);
                     this.x += distance;
                 }
                 break;
@@ -117,18 +113,40 @@ public class Player {
     }
 
     private Tile Tile(int keycode) {
-        int i = (x - 10) / 40;
-        int j = (y - 10) / 40;
+
+        // Current position
+        int i = (this.x - 10) / 40;
+        int j = (this.y - 10) / 40;
+
+        //System.out.println("Current position: x[" + this.x + "] y[" + this.y + "]");
+        System.out.println("Current i[" + i + "] j[" + j + "] type:[" + level.map[i][j].tileType + "]");
 
         switch(keycode) {
-            case KeyEvent.VK_UP: j--; break;
-            case KeyEvent.VK_LEFT: i--; break;
-            case KeyEvent.VK_DOWN: j++; break;
-            case KeyEvent.VK_RIGHT: i++; break;
-            default: break;
+            case KeyEvent.VK_UP:
+                // move char up
+                j--;
+                break;
+            case KeyEvent.VK_LEFT:
+                // move char left
+                i--;
+                break;
+            case KeyEvent.VK_DOWN:
+                // move char down
+                j++;
+                break;
+            case KeyEvent.VK_RIGHT:
+                // move char right
+                i++;
+                break;
         }
 
+        System.out.println("Next    i[" + i + "] j[" + j + "] type:[" + level.map[i][j].tileType + "]");
+
         return this.level.map[i][j];
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
     private boolean isPressed(int keycode) {
