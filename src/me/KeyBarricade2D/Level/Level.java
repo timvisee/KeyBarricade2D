@@ -92,48 +92,9 @@ public class Level {
         System.out.println("Loaded Map!");
     }
 
-    public void checkCollision(){
-
-        for (int i = 0; i < mapHeight; i++) {
-            for (int j = 0; j < mapWidth; j++) {
-
-                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 1)){
-
-                    /*if(player.isMovingLeft){
-                        player.setX(player.getX() + 40);
-                        player.isMovingLeft = false;
-                    }
-
-                    if(player.isMovingRight){
-                        player.setX(player.getX() -40);
-                        player.isMovingRight = false;
-                    }
-
-                    if(player.isMovingUp){
-                        player.setY(player.getY() + 40);
-                        player.isMovingUp = false;
-                    }
-
-                    if(player.isMovingDown){
-                        player.setY(player.getY() - 40);
-                        player.isMovingDown = false;
-                    }*/
-                }
-
-                if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 4)){
-                    currentLevel++;
-                    loadMap();
-                    player.setX(50);
-                    player.setY(410);
-                }
-            }
-        }
-    }
-
     public void update() {
 
         player.registerMovement();
-        //checkCollision();
     }
 
     public void paint(Graphics2D g) {

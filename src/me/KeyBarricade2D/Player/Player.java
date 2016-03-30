@@ -127,22 +127,6 @@ public class Player {
         return Input.isPressed(keycode);
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
     public void paint(Graphics2D g) {
         g.drawImage(image, x, y, WIDTH, HEIGHT, null);
     }
