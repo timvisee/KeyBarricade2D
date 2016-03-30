@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 public class Barricade extends Tile {
 
     private BufferedImage image;
+    private boolean opened = false;
 
     public Barricade(BufferedImage image) {
         super(image);
@@ -13,18 +14,18 @@ public class Barricade extends Tile {
         tileType = 2;
     }
 
-    public void remove() {
-        //
-    }
+
     public void open() {
 
-        //TODO first check if key has been picked up or is high enough.
-        remove();
+        opened = true;
     }
 
     @Override
     public boolean isPassable() {
-        return false;
+        if(opened)
+            return true;
+        else
+            return false;
     }
 
     @Override

@@ -32,6 +32,7 @@ public class Level {
         loadMap();
 
         player = new Player(210, 250, this);
+
     }
 
     public void loadTiles(){
@@ -95,20 +96,24 @@ public class Level {
 
     public void checkBarricade() {
         if(player.currentTile(2)) {
-            System.out.println("Barricade");
+            if(player.key.obtained) {
+                map[player.yPos][player.xPos] = new Tile(ground);
+                System.out.println(player.xPos + " " + player.yPos);
+                player.key.obtained = false;
+            }
         }
     }
 
     public void checkGoal() {
         if(player.currentTile(4)) {
-            System.out.println("Goal");
         }
     }
 
     public void checkKeys() {
-        if(player.currentTile(3)) {
 
-            System.out.println("Key");
+        if(player.currentTile(3)) {
+            player.key.obtained = true;
+            map[player.yPos][player.xPos] = new Tile(ground);
         }
     }
 

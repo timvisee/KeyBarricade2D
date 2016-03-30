@@ -21,10 +21,13 @@ public class Player {
     private int x;
     private int y;
 
+    public int xPos;
+    public int yPos;
+
     private BufferedImage image;
     private Level level;
 
-    private Key key;
+    public Key key;
 
     private int W     = KeyEvent.VK_W;
     private int A     = KeyEvent.VK_A;
@@ -40,6 +43,7 @@ public class Player {
         this.x = x;
         this.y = y;
         this.level = level;
+        this.key = new Key();
 
         try {
             image = ImageIO.read(new File("Resources/Images/player.png"));
@@ -64,26 +68,35 @@ public class Player {
     }
 
     public void move(int keycode) {
+
         switch(keycode) {
             case KeyEvent.VK_UP:
-                if(Tile(UP).isPassable()) {
+                if (Tile(UP).isPassable()) {
                     this.y -= MOVE_DISTANCE;
-
+                } else if(Tile(UP).tileType == 2 && key.obtained) {
+                    this.y -= MOVE_DISTANCE;
                 }
                 break;
             case KeyEvent.VK_LEFT:
                 if(Tile(LEFT).isPassable()) {
+                    this.x -= MOVE_DISTANCE;
+                } else if(Tile(LEFT).tileType == 2 && key.obtained) {
                     this.x -= MOVE_DISTANCE;
                 }
                 break;
             case KeyEvent.VK_DOWN:
                 if(Tile(DOWN).isPassable()) {
                     this.y += MOVE_DISTANCE;
+                } else if(Tile(DOWN).tileType == 2 && key.obtained) {
+                    this.y += MOVE_DISTANCE;
                 }
                 break;
             case KeyEvent.VK_RIGHT:
                 if(Tile(RIGHT).isPassable()) {
                     this.x += MOVE_DISTANCE;
+                } else if(Tile(RIGHT).tileType == 2 && key.obtained) {
+                    this.x += MOVE_DISTANCE;
+
                 }
                 break;
         }
@@ -92,7 +105,7 @@ public class Player {
 
     private Tile Tile(int keycode) {
 
-        int i = (this.x - 10) / 40;
+        int i= (this.x - 10) / 40;
         int j = (this.y - 10) / 40;
 
         switch(keycode) {
@@ -107,10 +120,10 @@ public class Player {
 
     public boolean currentTile(int type) {
 
-        int i = (this.y - 10) / 40;
-        int j = (this.x - 10) / 40;
+        yPos = (this.y - 10) / 40;
+        xPos = (this.x - 10) / 40;
 
-        if(this.level.map[i][j].tileType == type) {
+        if(this.level.map[yPos][xPos].tileType == type) {
             return true;
         } else {
             return false;
