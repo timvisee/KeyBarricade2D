@@ -22,9 +22,7 @@ public class GameStateManager {
     public void start() {
 
         this.level.start();
-
         startPainting = true;
-
     }
 
     public void paint(Graphics2D g) {

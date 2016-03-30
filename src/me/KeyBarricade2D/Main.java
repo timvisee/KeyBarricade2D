@@ -10,13 +10,13 @@ public class Main {
         GameManager manager = new GameManager();
 
         manager.init();
-        System.out.println("1. Initialized game!");
+        System.out.println("Initialized game!");
 
         manager.getGameStateManager().loadLevel(new Level());
-        System.out.println("2. Loading level!");
+        System.out.println("Loading level!");
 
         manager.getGameStateManager().start();
-        System.out.println("5. Started Game!");
+        System.out.println("Started Game!");
 
         while(true) {
 

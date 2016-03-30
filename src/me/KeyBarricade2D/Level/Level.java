@@ -34,6 +34,7 @@ public class Level {
     }
 
     public void loadTiles(){
+
         try {
             stone       = ImageIO.read(new File("Resources/Images/stone.png"));
             ground      = ImageIO.read(new File("Resources/Images/tegel.jpg"));
@@ -44,7 +45,7 @@ public class Level {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("3. Loaded Tiles!");
+        System.out.println("Loaded Tiles!");
     }
 
     public void loadMap(){
@@ -86,9 +87,9 @@ public class Level {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Game completed!");
         }
-        System.out.println("4. Loaded Map!");
+        System.out.println("Loaded Map!");
     }
 
     public void checkCollision(){
@@ -122,8 +123,8 @@ public class Level {
                 if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 4)){
                     currentLevel++;
                     loadMap();
-                    player.setX(90);
-                    player.setY(90);
+                    player.setX(50);
+                    player.setY(410);
                 }
             }
         }
@@ -139,10 +140,8 @@ public class Level {
 
             for (int i = 0; i < mapHeight; i++) {
                 for (int j = 0; j < mapWidth; j++) {
-
-                        g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
+                    g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
                 }
-
             player.paint(g);
         }
     }

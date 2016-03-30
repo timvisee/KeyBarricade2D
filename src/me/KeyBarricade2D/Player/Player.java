@@ -106,6 +106,8 @@ public class Player {
         isMovingRight = false;
     }
 
+    public void resetPlayer(){}
+
     public int getX() {
         return x;
     }
