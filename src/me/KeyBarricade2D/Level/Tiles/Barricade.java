@@ -23,8 +23,8 @@ public class Barricade extends Tile {
     }
 
     @Override
-    public boolean hasCollision() {
-        return true;
+    public boolean isPassable() {
+        return false;
     }
 
     @Override

@@ -10,8 +10,8 @@ public class Tile {
         this.image = image;
     }
 
-    public boolean hasCollision() {
-        return false;
+    public boolean isPassable() {
+        return true;
     }
 
     public BufferedImage getImage() {

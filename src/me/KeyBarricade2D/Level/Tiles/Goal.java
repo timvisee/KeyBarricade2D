@@ -18,7 +18,7 @@ public class Goal extends Tile {
     }
 
     @Override
-    public boolean hasCollision() {
-        return false;
+    public boolean isPassable() {
+        return true;
     }
 }
