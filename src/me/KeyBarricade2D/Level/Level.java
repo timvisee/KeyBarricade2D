@@ -9,7 +9,7 @@ import java.io.*;
 
 public class Level {
 
-    private Tile [][] map;
+    public Tile [][] map;
 
     private Player player;
 

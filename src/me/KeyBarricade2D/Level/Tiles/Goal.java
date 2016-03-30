@@ -16,4 +16,9 @@ public class Goal extends Tile {
     public void finish() {
         //
     }
+
+    @Override
+    public boolean hasCollision() {
+        return false;
+    }
 }

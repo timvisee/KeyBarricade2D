@@ -23,6 +23,11 @@ public class Barricade extends Tile {
     }
 
     @Override
+    public boolean hasCollision() {
+        return true;
+    }
+
+    @Override
     public BufferedImage getImage() {
         return image;
     }

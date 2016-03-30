@@ -14,6 +14,11 @@ public class Wall extends Tile {
     }
 
     @Override
+    public boolean hasCollision() {
+        return true;
+    }
+
+    @Override
     public BufferedImage getImage() {
         return image;
     }

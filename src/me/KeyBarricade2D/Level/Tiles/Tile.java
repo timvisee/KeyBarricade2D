@@ -10,6 +10,10 @@ public class Tile {
         this.image = image;
     }
 
+    public boolean hasCollision() {
+        return false;
+    }
+
     public BufferedImage getImage() {
         return image;
     }

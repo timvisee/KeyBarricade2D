@@ -26,6 +26,11 @@ public class Key extends Tile {
     }
 
     @Override
+    public boolean hasCollision() {
+        return false;
+    }
+
+    @Override
     public BufferedImage getImage() {
         return image;
     }
