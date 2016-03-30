@@ -1,5 +1,6 @@
 package me.KeyBarricade2D.Player;
 
+import me.KeyBarricade2D.Level.Level;
 import me.KeyBarricade2D.input.Input;
 
 import javax.imageio.ImageIO;
@@ -32,11 +33,14 @@ public class Player {
     private int DOWN = KeyEvent.VK_DOWN;
     private int RIGHT = KeyEvent.VK_RIGHT;
 
+    private Level level;
+
     private BufferedImage image;
 
-    public Player(int x, int y) {
+    public Player(int x, int y, Level level) {
         this.x = x;
         this.y = y;
+        this.level = level;
 
         try {
             image = ImageIO.read(new File("Resources/Images/player.png"));
@@ -47,33 +51,17 @@ public class Player {
 
     public void registerMovement() {
 
-        if (isPressed(W) || isPressed(UP)) {
-            //move(UP);
-            setMoving(UP);
-            System.out.println("Move UP set");
-            System.out.println(isMovingUp);
-        }
+        if (isPressed(W) || isPressed(UP))
+            move(UP);
 
-        if (isPressed(A) || isPressed(LEFT)) {
-            //move(LEFT);
-            setMoving(LEFT);
-            System.out.println("Move LEFT set");
-            System.out.println(isMovingLeft);
-        }
+        if (isPressed(A) || isPressed(LEFT))
+            move(LEFT);
 
-        if(isPressed(S) || isPressed(DOWN)) {
-            //move(DOWN);
-            setMoving(DOWN);
-            System.out.println("Move DOWN set");
-            System.out.println(isMovingDown);
-        }
+        if(isPressed(S) || isPressed(DOWN))
+            move(DOWN);
 
-        if(isPressed(D) || isPressed(RIGHT)) {
-            //move(RIGHT);
-            setMoving(RIGHT);
-            System.out.println("Move RIGHT set");
-            System.out.println(isMovingRight);
-        }
+        if(isPressed(D) || isPressed(RIGHT))
+            move(RIGHT);
     }
 
     public void move(int keycode) {
@@ -86,7 +74,7 @@ public class Player {
         }
         Input.flush();
         resetMoving();
-        System.out.println("x: " + this.x + ", y: " + this.y);
+        setMoving(keycode);
     }
 
     private void setMoving(int keycode) {

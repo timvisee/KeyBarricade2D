@@ -27,7 +27,7 @@ public class Level {
 
     public void start() {
 
-        player = new Player(210, 250);
+        player = new Player(210, 250, this);
 
         loadTiles();
         loadMap();
