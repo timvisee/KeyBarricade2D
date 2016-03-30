@@ -27,10 +27,10 @@ public class Level {
 
     public void start() {
 
-        player = new Player(210, 250, this);
-
         loadTiles();
         loadMap();
+
+        player = new Player(210, 250, this);
     }
 
     public void loadTiles(){
@@ -99,7 +99,7 @@ public class Level {
 
                 if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 1)){
 
-                    if(player.isMovingLeft){
+                    /*if(player.isMovingLeft){
                         player.setX(player.getX() + 40);
                         player.isMovingLeft = false;
                     }
@@ -117,7 +117,7 @@ public class Level {
                     if(player.isMovingDown){
                         player.setY(player.getY() - 40);
                         player.isMovingDown = false;
-                    }
+                    }*/
                 }
 
                 if((player.getX() == (j * tileSize + 10) && player.getY() == (i * tileSize + 10) && map[i][j].tileType == 4)){
@@ -142,7 +142,7 @@ public class Level {
             for (int j = 0; j < mapWidth; j++) {
                 g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
             }
-        player.paint(g);
+            player.paint(g);
         }
     }
 }
