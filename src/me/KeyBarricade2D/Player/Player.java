@@ -48,27 +48,35 @@ public class Player {
     public void registerMovement() {
 
         if (isPressed(W) || isPressed(UP)) {
-            move(UP);
+            //move(UP);
             setMoving(UP);
+            System.out.println("Move UP set");
+            System.out.println(isMovingUp);
         }
 
         if (isPressed(A) || isPressed(LEFT)) {
-            move(LEFT);
+            //move(LEFT);
             setMoving(LEFT);
+            System.out.println("Move LEFT set");
+            System.out.println(isMovingLeft);
         }
 
         if(isPressed(S) || isPressed(DOWN)) {
-            move(DOWN);
+            //move(DOWN);
             setMoving(DOWN);
+            System.out.println("Move DOWN set");
+            System.out.println(isMovingDown);
         }
 
         if(isPressed(D) || isPressed(RIGHT)) {
-            move(RIGHT);
+            //move(RIGHT);
             setMoving(RIGHT);
+            System.out.println("Move RIGHT set");
+            System.out.println(isMovingRight);
         }
     }
 
-    private void move(int keycode) {
+    public void move(int keycode) {
         switch(keycode) {
             case KeyEvent.VK_UP:    this.y -= distance; break;
             case KeyEvent.VK_LEFT:  this.x -= distance; break;
@@ -77,6 +85,8 @@ public class Player {
             default: break;
         }
         Input.flush();
+        resetMoving();
+        System.out.println("x: " + this.x + ", y: " + this.y);
     }
 
     private void setMoving(int keycode) {
