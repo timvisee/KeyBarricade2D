@@ -51,10 +51,10 @@ public class Player {
 
     public void registerMovement() {
 
-        if (isPressed(W) || isPressed(UP))
+        if(isPressed(W) || isPressed(UP))
             move(UP);
 
-        if (isPressed(A) || isPressed(LEFT))
+        if(isPressed(A) || isPressed(LEFT))
             move(LEFT);
 
         if(isPressed(S) || isPressed(DOWN))
