@@ -105,7 +105,7 @@ public class Player {
 
     public void resetPos(){
         x = 50;
-        y = 450;
+        y = 410;
     }
 
     private Tile Tile(int keycode) {

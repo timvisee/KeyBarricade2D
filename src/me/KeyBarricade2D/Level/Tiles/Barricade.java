@@ -14,18 +14,13 @@ public class Barricade extends Tile {
         tileType = 2;
     }
 
-
     public void open() {
-
         opened = true;
     }
 
     @Override
     public boolean isPassable() {
-        if(opened)
-            return true;
-        else
-            return false;
+        return opened;
     }
 
     @Override

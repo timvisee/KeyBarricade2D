@@ -98,7 +98,6 @@ public class Level {
         if(player.currentTile(2)) {
             if(player.key.obtained) {
                 map[player.yPos][player.xPos] = new Tile(ground);
-                System.out.println(player.xPos + " " + player.yPos);
                 player.key.obtained = false;
             }
         }
