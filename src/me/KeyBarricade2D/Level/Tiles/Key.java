@@ -6,13 +6,13 @@ public class Key extends Tile {
 
     private BufferedImage image;
     public boolean obtained = false;
-    public int hahhaa;
+    public int keySize;
 
-    public Key(BufferedImage image) {
+    public Key(BufferedImage image, int keySize) {
         super(image);
         this.image = image;
-
         tileType = 3;
+        this.keySize = keySize;
     }
 
     public Key() {

@@ -103,9 +103,19 @@ public class Level {
     public void checkBarricade() {
         if(player.currentTile(2)) {
             if(player.key.obtained) {
+                System.out.println("You unlocked a barricade.");
                 map[player.yPos][player.xPos] = new Tile(images.get(0));
                 player.key.obtained = false;
             }
+        }
+    }
+
+    public void checkKeys() {
+
+        if(player.currentTile(3)) {
+            System.out.println("You picked up a key.");
+            player.key.obtained = true;
+            map[player.yPos][player.xPos] = new Tile(images.get(0));
         }
     }
 
@@ -117,14 +127,6 @@ public class Level {
         }
     }
 
-    public void checkKeys() {
-
-        if(player.currentTile(3)) {
-            System.out.println("KEY");
-            player.key.obtained = true;
-            map[player.yPos][player.xPos] = new Tile(images.get(0));
-        }
-    }
 
     public void update() {
 

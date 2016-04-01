@@ -6,11 +6,13 @@ public class Barricade extends Tile {
 
     private BufferedImage image;
     private boolean opened = false;
+    public int barricadeSize;
 
-    public Barricade(BufferedImage image) {
+    public Barricade(BufferedImage image, int barricadeSize) {
         super(image);
         this.image = image;
         tileType = 2;
+        this.barricadeSize = barricadeSize;
     }
 
     public void open() {

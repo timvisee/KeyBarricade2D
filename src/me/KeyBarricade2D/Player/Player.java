@@ -6,6 +6,7 @@ import me.KeyBarricade2D.Level.Tiles.Tile;
 import me.KeyBarricade2D.input.Input;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -60,43 +61,20 @@ public class Player {
 
     public void move(int keycode) {
 
-        switch(keycode) {
-            case UP:
-                if (Tile(UP).isPassable()) {
-                    this.y -= MOVE_DISTANCE;
-                } else if(Tile(UP).tileType == 2 && key.obtained) {
-                    this.y -= MOVE_DISTANCE;
-                }
-                break;
-            case LEFT:
-                if(Tile(LEFT).isPassable()) {
-                    this.x -= MOVE_DISTANCE;
-                } else if(Tile(LEFT).tileType == 2 && key.obtained) {
-                    this.x -= MOVE_DISTANCE;
-                }
-                break;
-            case DOWN:
-                if(Tile(DOWN).isPassable()) {
-                    this.y += MOVE_DISTANCE;
-                } else if(Tile(DOWN).tileType == 2 && key.obtained) {
-                    this.y += MOVE_DISTANCE;
-                }
-                break;
-            case RIGHT:
-                if(Tile(RIGHT).isPassable()) {
-                    this.x += MOVE_DISTANCE;
-                } else if(Tile(RIGHT).tileType == 2 && key.obtained) {
-                    this.x += MOVE_DISTANCE;
-
-                }
-                break;
+        if((Tile(keycode).isPassable()) || (Tile(keycode).tileType == 2 && key.obtained)) {
+            switch(keycode) {
+                case UP:    y -= MOVE_DISTANCE; break;
+                case LEFT:  x -= MOVE_DISTANCE; break;
+                case DOWN:  y += MOVE_DISTANCE; break;
+                case RIGHT: x += MOVE_DISTANCE; break;
+            }
         }
         Input.flush();
     }
 
     public void resetPos(){
-        x = this.level.map[0][0].SIZE + 10;
-        y = this.level.map[0][0].SIZE * 10 + 10;
+        x = this.level.map[1][1].SIZE + 10;
+        y = this.level.map[1][10].SIZE * 10 + 10;
     }
 
     private Tile Tile(int keycode) {
