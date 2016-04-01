@@ -61,36 +61,13 @@ public class Player {
 
     public void move(int keycode) {
 
-        switch(keycode) {
-            case UP:
-                if (Tile(UP).isPassable()) {
-                    this.y -= MOVE_DISTANCE;
-                } else if(Tile(UP).tileType == 2 && key.obtained) {
-                    this.y -= MOVE_DISTANCE;
-                }
-                break;
-            case LEFT:
-                if(Tile(LEFT).isPassable()) {
-                    this.x -= MOVE_DISTANCE;
-                } else if(Tile(LEFT).tileType == 2 && key.obtained) {
-                    this.x -= MOVE_DISTANCE;
-                }
-                break;
-            case DOWN:
-                if(Tile(DOWN).isPassable()) {
-                    this.y += MOVE_DISTANCE;
-                } else if(Tile(DOWN).tileType == 2 && key.obtained) {
-                    this.y += MOVE_DISTANCE;
-                }
-                break;
-            case RIGHT:
-                if(Tile(RIGHT).isPassable()) {
-                    this.x += MOVE_DISTANCE;
-                } else if(Tile(RIGHT).tileType == 2 && key.obtained) {
-                    this.x += MOVE_DISTANCE;
-
-                }
-                break;
+        if((Tile(keycode).isPassable()) || (Tile(keycode).tileType == 2 && key.obtained)) {
+            switch(keycode) {
+                case UP:    y -= MOVE_DISTANCE; break;
+                case LEFT:  x -= MOVE_DISTANCE; break;
+                case DOWN:  y += MOVE_DISTANCE; break;
+                case RIGHT: x += MOVE_DISTANCE; break;
+            }
         }
         Input.flush();
     }
