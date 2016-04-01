@@ -29,16 +29,6 @@ public class Player {
 
     public Key key;
 
-    private int W     = KeyEvent.VK_W;
-    private int A     = KeyEvent.VK_A;
-    private int S     = KeyEvent.VK_S;
-    private int D     = KeyEvent.VK_D;
-
-    private int UP    = KeyEvent.VK_UP;
-    private int LEFT  = KeyEvent.VK_LEFT;
-    private int DOWN  = KeyEvent.VK_DOWN;
-    private int RIGHT = KeyEvent.VK_RIGHT;
-
     public Player(int x, int y, Level level) {
         this.x = x;
         this.y = y;
@@ -54,47 +44,47 @@ public class Player {
 
     public void registerMovement() {
 
-        if(isPressed(W) || isPressed(UP))
-            move(UP);
+        if(isPressed(KeyEvent.VK_W) || isPressed(KeyEvent.VK_UP))
+            move(KeyEvent.VK_UP);
 
-        if(isPressed(A) || isPressed(LEFT))
-            move(LEFT);
+        if(isPressed(KeyEvent.VK_A) || isPressed(KeyEvent.VK_LEFT))
+            move(KeyEvent.VK_LEFT);
 
-        if(isPressed(S) || isPressed(DOWN))
-            move(DOWN);
+        if(isPressed(KeyEvent.VK_S) || isPressed(KeyEvent.VK_DOWN))
+            move(KeyEvent.VK_DOWN);
 
-        if(isPressed(D) || isPressed(RIGHT))
-            move(RIGHT);
+        if(isPressed(KeyEvent.VK_D) || isPressed(KeyEvent.VK_RIGHT))
+            move(KeyEvent.VK_RIGHT);
     }
 
     public void move(int keycode) {
 
         switch(keycode) {
             case KeyEvent.VK_UP:
-                if (Tile(UP).isPassable()) {
+                if (Tile(KeyEvent.VK_UP).isPassable()) {
                     this.y -= MOVE_DISTANCE;
-                } else if(Tile(UP).tileType == 2 && key.obtained) {
+                } else if(Tile(KeyEvent.VK_UP).tileType == 2 && key.obtained) {
                     this.y -= MOVE_DISTANCE;
                 }
                 break;
             case KeyEvent.VK_LEFT:
-                if(Tile(LEFT).isPassable()) {
+                if(Tile(KeyEvent.VK_LEFT).isPassable()) {
                     this.x -= MOVE_DISTANCE;
-                } else if(Tile(LEFT).tileType == 2 && key.obtained) {
+                } else if(Tile(KeyEvent.VK_LEFT).tileType == 2 && key.obtained) {
                     this.x -= MOVE_DISTANCE;
                 }
                 break;
             case KeyEvent.VK_DOWN:
-                if(Tile(DOWN).isPassable()) {
+                if(Tile(KeyEvent.VK_DOWN).isPassable()) {
                     this.y += MOVE_DISTANCE;
-                } else if(Tile(DOWN).tileType == 2 && key.obtained) {
+                } else if(Tile(KeyEvent.VK_DOWN).tileType == 2 && key.obtained) {
                     this.y += MOVE_DISTANCE;
                 }
                 break;
             case KeyEvent.VK_RIGHT:
-                if(Tile(RIGHT).isPassable()) {
+                if(Tile(KeyEvent.VK_RIGHT).isPassable()) {
                     this.x += MOVE_DISTANCE;
-                } else if(Tile(RIGHT).tileType == 2 && key.obtained) {
+                } else if(Tile(KeyEvent.VK_RIGHT).tileType == 2 && key.obtained) {
                     this.x += MOVE_DISTANCE;
 
                 }

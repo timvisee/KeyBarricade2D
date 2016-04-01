@@ -29,9 +29,6 @@ public class Level {
         loadMap();
 
         player = new Player(210, 250, this);
-
-
-
     }
 
     public void loadTiles(){
