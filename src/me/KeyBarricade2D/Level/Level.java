@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Level {
 
@@ -14,11 +15,7 @@ public class Level {
 
     private Player player;
 
-    private BufferedImage stone;
-    private BufferedImage ground;
-    private BufferedImage key;
-    private BufferedImage barricade;
-    private BufferedImage goal;
+    private ArrayList <BufferedImage> images;
 
     private int mapWidth;
     private int mapHeight;
@@ -33,16 +30,20 @@ public class Level {
 
         player = new Player(210, 250, this);
 
+
+
     }
 
     public void loadTiles(){
 
+        images = new ArrayList<>();
+
         try {
-            stone       = ImageIO.read(new File("Resources/Images/stone.png"));
-            ground      = ImageIO.read(new File("Resources/Images/tegel.jpg"));
-            key         = ImageIO.read(new File("Resources/Images/key.png"));
-            barricade   = ImageIO.read(new File("Resources/Images/barricade.png"));
-            goal        = ImageIO.read(new File("Resources/Images/goal.png"));
+            images.add(0, ImageIO.read(new File("Resources/Images/tegel.jpg")));    //ground
+            images.add(1, ImageIO.read(new File("Resources/Images/stone.png")));    //wall
+            images.add(2, ImageIO.read(new File("Resources/Images/barricade.png")));//barricade
+            images.add(3, ImageIO.read(new File("Resources/Images/key.png")));      // key
+            images.add(4, ImageIO.read(new File("Resources/Images/goal.png")));     // goal
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -71,19 +72,19 @@ public class Level {
                     int x = Integer.parseInt(numbers[j]);
                     switch(x) {
                         case 1:
-                            map[i][j] = new Wall(stone);
+                            map[i][j] = new Wall(images.get(1));
                             break;
                         case 2:
-                            map[i][j] = new Barricade(barricade);
+                            map[i][j] = new Barricade(images.get(2));
                             break;
                         case 3:
-                            map[i][j] = new Key(key);
+                            map[i][j] = new Key(images.get(3));
                             break;
                         case 4:
-                            map[i][j] = new Goal(goal);
+                            map[i][j] = new Goal(images.get(4));
                             break;
                         default:
-                            map[i][j] = new Tile(ground);
+                            map[i][j] = new Tile(images.get(0));
                             break;
                     }
                 }
@@ -97,7 +98,7 @@ public class Level {
     public void checkBarricade() {
         if(player.currentTile(2)) {
             if(player.key.obtained) {
-                map[player.yPos][player.xPos] = new Tile(ground);
+                map[player.yPos][player.xPos] = new Tile(images.get(0));
                 player.key.obtained = false;
             }
         }
@@ -115,7 +116,7 @@ public class Level {
 
         if(player.currentTile(3)) {
             player.key.obtained = true;
-            map[player.yPos][player.xPos] = new Tile(ground);
+            map[player.yPos][player.xPos] = new Tile(images.get(0));
         }
     }
 
