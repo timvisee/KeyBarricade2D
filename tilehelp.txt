@@ -1,0 +1,11 @@
+0 = ground		     | tiletype = 0;
+
+1 = wall 		     | tiletype = 1;
+
+2 = barricade - 50   | tiletype = 2;
+3 = barricade - 100  | tileType = 2;
+
+4 = key - 50		 | tiletype = 3;
+5 = key - 100      	 | tiletype = 3;
+
+6 = goal		     | tiletype = 4;

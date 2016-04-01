@@ -6,6 +6,7 @@ public class Key extends Tile {
 
     private BufferedImage image;
     public boolean obtained = false;
+    public int hahhaa;
 
     public Key(BufferedImage image) {
         super(image);

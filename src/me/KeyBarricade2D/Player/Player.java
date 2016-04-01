@@ -7,7 +7,6 @@ import me.KeyBarricade2D.input.Input;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -96,8 +95,8 @@ public class Player {
     }
 
     public void resetPos(){
-        x = 50;
-        y = 410;
+        x = this.level.map[0][0].SIZE + 10;
+        y = this.level.map[0][0].SIZE * 10 + 10;
     }
 
     private Tile Tile(int keycode) {
@@ -121,6 +120,9 @@ public class Player {
         xPos = (this.x - 10) / 40;
 
         return this.level.map[yPos][xPos].tileType == type;
+
+
+        //FIXME ((Key)level.map[yPos][xPos]) cast!
     }
 
     public void setLevel(Level level) {

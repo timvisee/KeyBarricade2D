@@ -14,13 +14,10 @@ public class Level {
     public Tile[][] map;
 
     private Player player;
-
     private ArrayList <BufferedImage> images;
 
     private int mapWidth;
     private int mapHeight;
-
-    private int tileSize = 40;
     private int currentLevel = 1;
 
     public void start() {
@@ -38,9 +35,14 @@ public class Level {
         try {
             images.add(0, ImageIO.read(new File("Resources/Images/tegel.jpg")));    //ground
             images.add(1, ImageIO.read(new File("Resources/Images/stone.png")));    //wall
-            images.add(2, ImageIO.read(new File("Resources/Images/barricade.png")));//barricade
-            images.add(3, ImageIO.read(new File("Resources/Images/key.png")));      // key
-            images.add(4, ImageIO.read(new File("Resources/Images/goal.png")));     // goal
+
+            images.add(2, ImageIO.read(new File("Resources/Images/barricade50.png")));//barricade
+            images.add(3, ImageIO.read(new File("Resources/Images/barricade100.png")));
+
+            images.add(4, ImageIO.read(new File("Resources/Images/key50.png")));      // key
+            images.add(5, ImageIO.read(new File("Resources/Images/key100.png")));
+
+            images.add(6, ImageIO.read(new File("Resources/Images/goal.png")));     // goal
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,21 +70,27 @@ public class Level {
 
                     int x = Integer.parseInt(numbers[j]);
                     switch(x) {
+                        default:
+                            map[i][j] = new Tile(images.get(0));
+                            break;
                         case 1:
                             map[i][j] = new Wall(images.get(1));
                             break;
                         case 2:
-                            map[i][j] = new Barricade(images.get(2));
+                            map[i][j] = new Barricade(images.get(2), 50);
                             break;
                         case 3:
-                            map[i][j] = new Key(images.get(3));
+                            map[i][j] = new Barricade(images.get(3), 100);
                             break;
                         case 4:
-                            map[i][j] = new Goal(images.get(4));
+                            map[i][j] = new Key(images.get(4), 50);
                             break;
-                        default:
-                            map[i][j] = new Tile(images.get(0));
+                        case 5:
+                            map[i][j] = new Key(images.get(5), 100);
                             break;
+                        case 6:
+                        map[i][j] = new Goal(images.get(6));
+                        break;
                     }
                 }
             }
@@ -112,6 +120,7 @@ public class Level {
     public void checkKeys() {
 
         if(player.currentTile(3)) {
+            System.out.println("KEY");
             player.key.obtained = true;
             map[player.yPos][player.xPos] = new Tile(images.get(0));
         }
@@ -129,7 +138,7 @@ public class Level {
 
         for (int i = 0; i < mapHeight; i++) {
             for (int j = 0; j < mapWidth; j++) {
-                g.drawImage(map[i][j].getImage(), 10 + j * tileSize, 10 + i * tileSize, tileSize, tileSize, null);
+                g.drawImage(map[i][j].getImage(), 10 + j * map[i][j].SIZE, 10 + i * map[i][j].SIZE, map[i][j].SIZE, map[i][j].SIZE, null);
             }
             player.paint(g);
         }

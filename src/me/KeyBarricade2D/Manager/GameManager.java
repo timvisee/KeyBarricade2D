@@ -2,7 +2,6 @@ package me.KeyBarricade2D.Manager;
 
 import me.KeyBarricade2D.Frame.Frame;
 import me.KeyBarricade2D.Frame.FramePanel;
-import me.KeyBarricade2D.input.Input;
 
 public class GameManager {
 
