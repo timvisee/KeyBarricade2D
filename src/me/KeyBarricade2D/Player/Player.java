@@ -101,8 +101,8 @@ public class Player {
 
     private Tile Tile(int keycode) {
 
-        int i= (this.x - 10) / 40;
-        int j = (this.y - 10) / 40;
+        int i = (x - 10) / 40;
+        int j = (y - 10) / 40;
 
         switch(keycode) {
             case UP:    j--; break;
@@ -111,7 +111,7 @@ public class Player {
             case RIGHT: i++; break;
         }
 
-        return this.level.map[j][i];
+        return level.map[j][i];
     }
 
     public boolean currentTile(int type) {
