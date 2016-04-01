@@ -7,7 +7,6 @@ import me.KeyBarricade2D.input.Input;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +34,7 @@ public class Player {
         this.x = x;
         this.y = y;
         this.level = level;
-        key = new Key();
+        this.key = new Key();
 
         try {
             image = ImageIO.read(new File("Resources/Images/player.png"));
@@ -61,26 +60,49 @@ public class Player {
 
     public void move(int keycode) {
 
-        if((Tile(keycode).isPassable()) || (Tile(keycode).tileType == 2 && key.obtained)) {
-            switch(keycode) {
-                case UP:    y -= MOVE_DISTANCE; break;
-                case LEFT:  x -= MOVE_DISTANCE; break;
-                case DOWN:  y += MOVE_DISTANCE; break;
-                case RIGHT: x += MOVE_DISTANCE; break;
-            }
+        switch(keycode) {
+            case UP:
+                if (Tile(UP).isPassable()) {
+                    this.y -= MOVE_DISTANCE;
+                } else if(Tile(UP).tileType == 2 && key.obtained) {
+                    this.y -= MOVE_DISTANCE;
+                }
+                break;
+            case LEFT:
+                if(Tile(LEFT).isPassable()) {
+                    this.x -= MOVE_DISTANCE;
+                } else if(Tile(LEFT).tileType == 2 && key.obtained) {
+                    this.x -= MOVE_DISTANCE;
+                }
+                break;
+            case DOWN:
+                if(Tile(DOWN).isPassable()) {
+                    this.y += MOVE_DISTANCE;
+                } else if(Tile(DOWN).tileType == 2 && key.obtained) {
+                    this.y += MOVE_DISTANCE;
+                }
+                break;
+            case RIGHT:
+                if(Tile(RIGHT).isPassable()) {
+                    this.x += MOVE_DISTANCE;
+                } else if(Tile(RIGHT).tileType == 2 && key.obtained) {
+                    this.x += MOVE_DISTANCE;
+
+                }
+                break;
         }
         Input.flush();
     }
 
     public void resetPos(){
-        x = 50;
-        y = 410;
+        x = this.level.map[0][0].SIZE + 10;
+        y = this.level.map[0][0].SIZE * 10 + 10;
     }
 
     private Tile Tile(int keycode) {
 
-        int i = (x - 10) / 40;
-        int j = (y - 10) / 40;
+        int i= (this.x - 10) / 40;
+        int j = (this.y - 10) / 40;
 
         switch(keycode) {
             case UP:    j--; break;
@@ -89,15 +111,18 @@ public class Player {
             case RIGHT: i++; break;
         }
 
-        return level.map[j][i];
+        return this.level.map[j][i];
     }
 
     public boolean currentTile(int type) {
 
-        yPos = (y - 10) / 40;
-        xPos = (x - 10) / 40;
+        yPos = (this.y - 10) / 40;
+        xPos = (this.x - 10) / 40;
 
-        return level.map[yPos][xPos].tileType == type;
+        return this.level.map[yPos][xPos].tileType == type;
+
+
+        //FIXME ((Key)level.map[yPos][xPos]) cast!
     }
 
     public void setLevel(Level level) {

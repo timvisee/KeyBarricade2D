@@ -10,7 +10,6 @@ public class Barricade extends Tile {
     public Barricade(BufferedImage image) {
         super(image);
         this.image = image;
-
         tileType = 2;
     }
 
@@ -25,7 +24,7 @@ public class Barricade extends Tile {
 
     @Override
     public BufferedImage getImage() {
-        return image;
+            return image;
     }
 
     @Override
