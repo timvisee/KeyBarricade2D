@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 public class Barricade extends Tile {
 
     private boolean opened = false;
-    public int barricadeSize;
+    private int barricadeSize;
 
     public Barricade(String image_src, int barricadeSize) {
 
@@ -30,10 +30,5 @@ public class Barricade extends Tile {
     @Override
     public BufferedImage getImage() {
             return image;
-    }
-
-    @Override
-    public void setImage(BufferedImage image) {
-        this.image = image;
     }
 }

@@ -22,7 +22,6 @@ public class Tile {
     }
 
     protected void loadImage(String src) {
-
         ImageReader reader = new ImageReader();
 
         if(reader.readImage(src) != null) {
@@ -35,10 +34,6 @@ public class Tile {
 
     public boolean isPassable() {
         return true;
-    }
-
-    public void setImage(BufferedImage image) {
-        this.image = image;
     }
 
     public BufferedImage getImage() {

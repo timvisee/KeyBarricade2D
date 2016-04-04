@@ -39,6 +39,7 @@ public class Key extends Tile {
     public void setKeySize(int keySize){
         this.keySize = keySize;
     }
+
     @Override
     public boolean isPassable() {
         return true;
@@ -47,10 +48,5 @@ public class Key extends Tile {
     @Override
     public BufferedImage getImage() {
         return image;
-    }
-
-    @Override
-    public void setImage(BufferedImage image) {
-        this.image = image;
     }
 }

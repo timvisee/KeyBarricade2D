@@ -7,12 +7,10 @@ public class Wall extends Tile {
     private final String IMAGE_SRC = "Resources/Images/stone.png";
 
     public Wall() {
-
         loadImage(IMAGE_SRC);
     }
 
     public Wall(String image_src) {
-
         loadImage(image_src);
         this.tileType = 1;
     }
@@ -26,11 +24,4 @@ public class Wall extends Tile {
     public BufferedImage getImage() {
         return image;
     }
-
-    @Override
-    public void setImage(BufferedImage image) {
-        this.image = image;
-    }
-
-
 }
