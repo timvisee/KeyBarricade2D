@@ -14,7 +14,7 @@ public class Level {
     public Tile[][] map;
 
     private Player player;
-    private ArrayList <BufferedImage> images;
+    private String[] images;
 
     private int mapWidth;
     private int mapHeight;
@@ -30,23 +30,16 @@ public class Level {
 
     public void loadTiles(){
 
-        images = new ArrayList<>();
+        images = new String[7];
 
-        try {
-            images.add(0, ImageIO.read(new File("Resources/Images/tegel.jpg")));    //ground
-            images.add(1, ImageIO.read(new File("Resources/Images/stone.png")));    //wall
+        images[0] = "Resources/Images/tegel.jpg";           // ground
+        images[1] = "Resources/Images/stone.png";           // wall
+        images[2] = "Resources/Images/barricade50.png";     // barricade  (50)
+        images[3] = "Resources/Images/barricade100.png";    // barricade (100)
+        images[4] = "Resources/Images/key50.png";           // key        (50)
+        images[5] = "Resources/Images/key100.png";          // key       (100)
+        images[6] = "Resources/Images/goal.png";            // goal
 
-            images.add(2, ImageIO.read(new File("Resources/Images/barricade50.png")));//barricade
-            images.add(3, ImageIO.read(new File("Resources/Images/barricade100.png")));
-
-            images.add(4, ImageIO.read(new File("Resources/Images/key50.png")));      // key
-            images.add(5, ImageIO.read(new File("Resources/Images/key100.png")));
-
-            images.add(6, ImageIO.read(new File("Resources/Images/goal.png")));     // goal
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         System.out.println("Loaded Tiles!");
     }
 
@@ -71,25 +64,25 @@ public class Level {
                     int x = Integer.parseInt(numbers[j]);
                     switch(x) {
                         default:
-                            map[i][j] = new Tile(images.get(0));
+                            map[i][j] = new Tile();
                             break;
                         case 1:
-                            map[i][j] = new Wall(images.get(1));
+                            map[i][j] = new Wall();
                             break;
                         case 2:
-                            map[i][j] = new Barricade(images.get(2), 50);
+                            map[i][j] = new Barricade(images[2], 50);
                             break;
                         case 3:
-                            map[i][j] = new Barricade(images.get(3), 100);
+                            map[i][j] = new Barricade(images[3], 100);
                             break;
                         case 4:
-                            map[i][j] = new Key(images.get(4), 50);
+                            map[i][j] = new Key(images[4], 50);
                             break;
                         case 5:
-                            map[i][j] = new Key(images.get(5), 100);
+                            map[i][j] = new Key(images[5], 100);
                             break;
                         case 6:
-                        map[i][j] = new Goal(images.get(6));
+                        map[i][j] = new Goal();
                         break;
                     }
                 }
@@ -103,7 +96,7 @@ public class Level {
     public void checkBarricade() {
         if(player.currentTile(2)) {
             if(player.key.inPocket()) {
-                map[player.yPos][player.xPos] = new Tile(images.get(0));
+                map[player.yPos][player.xPos] = new Tile();
                 player.key.useKey();
                 System.out.println("You unlocked a barricade.");
             }
@@ -115,7 +108,7 @@ public class Level {
         if(player.currentTile(3)) {
             player.key.pickUp();
             player.key.setKeySize(((Key)map[player.yPos][player.xPos]).getKeySize());
-            map[player.yPos][player.xPos] = new Tile(images.get(0));
+            map[player.yPos][player.xPos] = new Tile();
             System.out.println("You picked up a " + player.key.getKeySize() + " key.");
         }
     }
