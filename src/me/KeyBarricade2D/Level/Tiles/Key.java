@@ -5,8 +5,8 @@ import java.awt.image.BufferedImage;
 public class Key extends Tile {
 
     private BufferedImage image;
-    public boolean obtained = false;
-    public int keySize;
+    private boolean obtained = false;
+    private int keySize;
 
     public Key(BufferedImage image, int keySize) {
         super(image);
@@ -33,6 +33,13 @@ public class Key extends Tile {
         return this.obtained;
     }
 
+    public int getKeySize(){
+        return keySize;
+    }
+
+    public void setKeySize(int keySize){
+        this.keySize = keySize;
+    }
     @Override
     public boolean isPassable() {
         return true;

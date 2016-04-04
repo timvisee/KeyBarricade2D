@@ -102,7 +102,7 @@ public class Level {
 
     public void checkBarricade() {
         if(player.currentTile(2)) {
-            if(player.key.obtained) {
+            if(player.key.inPocket()) {
                 map[player.yPos][player.xPos] = new Tile(images.get(0));
                 player.key.useKey();
                 System.out.println("You unlocked a barricade.");
@@ -114,8 +114,9 @@ public class Level {
 
         if(player.currentTile(3)) {
             player.key.pickUp();
+            player.key.setKeySize(((Key)map[player.yPos][player.xPos]).getKeySize());
             map[player.yPos][player.xPos] = new Tile(images.get(0));
-            System.out.println("You picked up a key.");
+            System.out.println("You picked up a " + player.key.getKeySize() + " key.");
         }
     }
 
@@ -124,6 +125,7 @@ public class Level {
             currentLevel++;
             loadMap();
             player.resetPos();
+            player.key.useKey();
         }
     }
 

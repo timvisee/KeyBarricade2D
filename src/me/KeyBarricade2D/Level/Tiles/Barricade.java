@@ -19,6 +19,10 @@ public class Barricade extends Tile {
         opened = true;
     }
 
+    public int getBarricadeSize(){
+        return barricadeSize;
+    }
+
     @Override
     public boolean isPassable() {
         return opened;

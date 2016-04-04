@@ -1,6 +1,7 @@
 package me.KeyBarricade2D.Player;
 
 import me.KeyBarricade2D.Level.Level;
+import me.KeyBarricade2D.Level.Tiles.Barricade;
 import me.KeyBarricade2D.Level.Tiles.Key;
 import me.KeyBarricade2D.Level.Tiles.Tile;
 import me.KeyBarricade2D.input.Input;
@@ -61,13 +62,18 @@ public class Player {
 
     public void move(int keycode) {
 
-        if((Tile(keycode).isPassable()) || (Tile(keycode).tileType == 2 && key.inPocket())) {
+        if((Tile(keycode).isPassable()) || ((Tile(keycode).tileType == 2 && key.inPocket())
+                && (key.getKeySize() ==((Barricade)Tile(keycode)).barricadeSize))) {
             switch(keycode) {
                 case UP:    y -= MOVE_DISTANCE; break;
                 case LEFT:  x -= MOVE_DISTANCE; break;
                 case DOWN:  y += MOVE_DISTANCE; break;
                 case RIGHT: x += MOVE_DISTANCE; break;
             }
+        } else if(Tile(keycode).tileType == 2 && !key.inPocket()){
+            JOptionPane.showMessageDialog(null, "You can't unlock this without a key!", "Warning!", JOptionPane.PLAIN_MESSAGE);
+        }else if(Tile(keycode).tileType == 2 && ((Barricade)Tile(keycode)).barricadeSize != key.getKeySize()) {
+            JOptionPane.showMessageDialog(null, "You got the wrong key!", "Warning!", JOptionPane.PLAIN_MESSAGE);
         }
         Input.flush();
     }
@@ -98,9 +104,6 @@ public class Player {
         xPos = (this.x - 10) / 40;
 
         return this.level.map[yPos][xPos].tileType == type;
-
-
-        //FIXME ((Key)level.map[yPos][xPos]) cast!
     }
 
     public void setLevel(Level level) {
