@@ -36,6 +36,8 @@ public class GameManager {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+
     }
 
     public GameStateManager getGameStateManager() {
