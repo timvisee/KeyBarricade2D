@@ -7,7 +7,6 @@ import me.KeyBarricade2D.Level.Tiles.Tile;
 import me.KeyBarricade2D.input.Input;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -29,6 +28,9 @@ public class Player {
 
     private BufferedImage image;
     private Level level;
+
+    private boolean noKey = false;
+    private boolean wrongKey = false;
 
     public Key key;
 
@@ -65,16 +67,19 @@ public class Player {
         if((Tile(keycode).isPassable()) || ((Tile(keycode).tileType == 2 && key.inPocket())
                 && (key.getKeySize() ==((Barricade)Tile(keycode)).barricadeSize))) {
             switch(keycode) {
-                case UP:    y -= MOVE_DISTANCE; break;
-                case LEFT:  x -= MOVE_DISTANCE; break;
-                case DOWN:  y += MOVE_DISTANCE; break;
-                case RIGHT: x += MOVE_DISTANCE; break;
+                case UP:    y -= MOVE_DISTANCE; noKey = false; wrongKey = false; break;
+                case LEFT:  x -= MOVE_DISTANCE; noKey = false; wrongKey = false; break;
+                case DOWN:  y += MOVE_DISTANCE; noKey = false; wrongKey = false; break;
+                case RIGHT: x += MOVE_DISTANCE; noKey = false; wrongKey = false; break;
             }
+
         } else if(Tile(keycode).tileType == 2 && !key.inPocket()){
-            JOptionPane.showMessageDialog(null, "You can't unlock this without a key!", "Warning!", JOptionPane.PLAIN_MESSAGE);
+            noKey = true;
+
         }else if(Tile(keycode).tileType == 2 && ((Barricade)Tile(keycode)).barricadeSize != key.getKeySize()) {
-            JOptionPane.showMessageDialog(null, "You got the wrong key!", "Warning!", JOptionPane.PLAIN_MESSAGE);
+            wrongKey = true;
         }
+
         Input.flush();
     }
 
@@ -116,5 +121,13 @@ public class Player {
 
     public void paint(Graphics2D g) {
         g.drawImage(image, x, y, WIDTH, HEIGHT, null);
+
+        g.setColor(Color.red);
+        if(noKey){
+            g.drawString("You cant go here without a key!", 15, 510);
+        }
+        if(wrongKey){
+            g.drawString("You have a wrong key!", 15, 510);
+        }
     }
 }

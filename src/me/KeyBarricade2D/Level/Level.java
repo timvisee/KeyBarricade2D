@@ -4,6 +4,7 @@ import me.KeyBarricade2D.Level.Tiles.*;
 import me.KeyBarricade2D.Player.Player;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -26,6 +27,7 @@ public class Level {
         loadMap();
 
         player = new Player(210, 250, this);
+
     }
 
     public void loadTiles(){
