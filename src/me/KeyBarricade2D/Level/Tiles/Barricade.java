@@ -4,19 +4,18 @@ import java.awt.image.BufferedImage;
 
 public class Barricade extends Tile {
 
-    private BufferedImage image;
     private boolean opened = false;
     public int barricadeSize;
 
-    public Barricade(BufferedImage image, int barricadeSize) {
-        super(image);
-        this.image = image;
-        tileType = 2;
+    public Barricade(String image_src, int barricadeSize) {
+
+        loadImage(image_src);
+        this.tileType = 2;
         this.barricadeSize = barricadeSize;
     }
 
     public void openBarricade() {
-        opened = true;
+        this.opened = true;
     }
 
     public int getBarricadeSize(){

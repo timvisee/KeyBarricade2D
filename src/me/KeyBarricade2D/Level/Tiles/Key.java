@@ -4,19 +4,18 @@ import java.awt.image.BufferedImage;
 
 public class Key extends Tile {
 
-    private BufferedImage image;
     private boolean obtained = false;
     private int keySize;
 
-    public Key(BufferedImage image, int keySize) {
-        super(image);
-        this.image = image;
-        tileType = 3;
+    public Key(String image_src, int keySize) {
+
+        loadImage(image_src);
+        this.tileType = 3;
         this.keySize = keySize;
     }
 
     public Key() {
-        tileType = 3;
+        this.tileType = 3;
     }
 
     public void pickUp() {
