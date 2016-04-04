@@ -4,13 +4,12 @@ import java.awt.image.BufferedImage;
 
 public class Goal extends Tile {
 
-    private BufferedImage image;
+    private final String IMAGE_SRC = "Resources/Images/goal.png";
 
-    public Goal(BufferedImage image) {
-        super(image);
-        this.image = image;
+    public Goal() {
 
-        tileType = 4;
+        loadImage(IMAGE_SRC);
+        this.tileType = 4;
     }
 
     public void finish() {

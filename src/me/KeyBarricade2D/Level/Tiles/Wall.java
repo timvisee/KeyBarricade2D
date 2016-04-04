@@ -4,13 +4,15 @@ import java.awt.image.BufferedImage;
 
 public class Wall extends Tile {
 
-    private BufferedImage image;
+    private final String IMAGE_SRC = "Resources/Images/stone.png";
 
-    public Wall(BufferedImage image) {
-        super(image);
-        this.image = image;
+    public Wall() {
+        loadImage(IMAGE_SRC);
+    }
 
-        tileType = 1;
+    public Wall(String image_src) {
+        loadImage(image_src);
+        this.tileType = 1;
     }
 
     @Override
@@ -22,11 +24,4 @@ public class Wall extends Tile {
     public BufferedImage getImage() {
         return image;
     }
-
-    @Override
-    public void setImage(BufferedImage image) {
-        this.image = image;
-    }
-
-
 }
