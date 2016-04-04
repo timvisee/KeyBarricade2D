@@ -15,7 +15,7 @@ public class Barricade extends Tile {
         this.barricadeSize = barricadeSize;
     }
 
-    public void open() {
+    public void openBarricade() {
         opened = true;
     }
 

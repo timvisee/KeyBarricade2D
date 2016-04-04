@@ -19,16 +19,19 @@ public class Key extends Tile {
         tileType = 3;
     }
 
-    public void pickedUp(boolean b) {
+    public void pickUp() {
 
-        obtained = b;
+       this.obtained = true;
     }
 
-    public void grab() {
+    public void useKey() {
 
+        this.obtained = false;
     }
 
-    public void remove() {}
+    public boolean inPocket() {
+        return this.obtained;
+    }
 
     @Override
     public boolean isPassable() {

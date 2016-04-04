@@ -61,7 +61,7 @@ public class Player {
 
     public void move(int keycode) {
 
-        if((Tile(keycode).isPassable()) || (Tile(keycode).tileType == 2 && key.obtained)) {
+        if((Tile(keycode).isPassable()) || (Tile(keycode).tileType == 2 && key.inPocket())) {
             switch(keycode) {
                 case UP:    y -= MOVE_DISTANCE; break;
                 case LEFT:  x -= MOVE_DISTANCE; break;
