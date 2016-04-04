@@ -29,8 +29,8 @@ public class Player {
     private BufferedImage image;
     private Level level;
 
-    private boolean noKey = false;
-    private boolean wrongKey = false;
+    private boolean noKeyNotification = false;
+    private boolean wrongKeyNotification = false;
 
     public Key key;
 
@@ -65,33 +65,33 @@ public class Player {
     public void move(int keycode) {
 
         if((Tile(keycode).isPassable()) || ((Tile(keycode).tileType == 2 && key.inPocket())
-                && (key.getKeySize() ==((Barricade)Tile(keycode)).barricadeSize))) {
+                && (key.getKeySize() ==((Barricade)Tile(keycode)).getBarricadeSize()))) {
             switch(keycode) {
-                case UP:    y -= MOVE_DISTANCE; noKey = false; wrongKey = false; break;
-                case LEFT:  x -= MOVE_DISTANCE; noKey = false; wrongKey = false; break;
-                case DOWN:  y += MOVE_DISTANCE; noKey = false; wrongKey = false; break;
-                case RIGHT: x += MOVE_DISTANCE; noKey = false; wrongKey = false; break;
+                case UP:    y -= MOVE_DISTANCE; noKeyNotification = false; wrongKeyNotification = false; break;
+                case LEFT:  x -= MOVE_DISTANCE; noKeyNotification = false; wrongKeyNotification = false; break;
+                case DOWN:  y += MOVE_DISTANCE; noKeyNotification = false; wrongKeyNotification = false; break;
+                case RIGHT: x += MOVE_DISTANCE; noKeyNotification = false; wrongKeyNotification = false; break;
             }
 
         } else if(Tile(keycode).tileType == 2 && !key.inPocket()){
-            noKey = true;
+            noKeyNotification = true;
 
-        }else if(Tile(keycode).tileType == 2 && ((Barricade)Tile(keycode)).barricadeSize != key.getKeySize()) {
-            wrongKey = true;
+        }else if(Tile(keycode).tileType == 2 && ((Barricade)Tile(keycode)).getBarricadeSize() != key.getKeySize()) {
+            wrongKeyNotification = true;
         }
 
         Input.flush();
     }
 
     public void resetPos(){
-        x = this.level.map[1][1].SIZE + 10;
-        y = this.level.map[1][10].SIZE * 10 + 10;
+        x = this.level.map[1][1].SIZE;
+        y = this.level.map[1][10].SIZE * 10;
     }
 
     private Tile Tile(int keycode) {
 
-        int i = (x - 10) / 40;
-        int j = (y - 10) / 40;
+        int i = x / 40;
+        int j = y / 40;
 
         switch(keycode) {
             case UP:    j--; break;
@@ -105,8 +105,8 @@ public class Player {
 
     public boolean currentTile(int type) {
 
-        yPos = (this.y - 10) / 40;
-        xPos = (this.x - 10) / 40;
+        yPos = y / 40;
+        xPos = x / 40;
 
         return this.level.map[yPos][xPos].tileType == type;
     }
@@ -123,11 +123,15 @@ public class Player {
         g.drawImage(image, x, y, WIDTH, HEIGHT, null);
 
         g.setColor(Color.red);
-        if(noKey){
-            g.drawString("You cant go here without a key!", 15, 510);
+        if(noKeyNotification){
+            g.drawString("You cant go here without a key!", 15, 503);
         }
-        if(wrongKey){
-            g.drawString("You have a wrong key!", 15, 510);
+        if(wrongKeyNotification){
+            g.drawString("That key doesn't fit!", 15, 503);
+        }
+
+        if(key.inPocket()){
+            g.drawString("*  Key size = " + key.getKeySize() + " *" , 150, 503);
         }
     }
 }

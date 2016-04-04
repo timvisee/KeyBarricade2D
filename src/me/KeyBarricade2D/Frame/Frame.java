@@ -10,7 +10,7 @@ public class Frame extends JFrame {
     /**
      * Declare frame dimensions
      */
-    private final int WIDTH = 505;
+    private final int WIDTH = 486;
     private final int HEIGHT = 550;
 
     public Frame() {

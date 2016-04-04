@@ -2,13 +2,12 @@ package me.KeyBarricade2D.Level;
 
 import me.KeyBarricade2D.Level.Tiles.*;
 import me.KeyBarricade2D.Player.Player;
+import me.KeyBarricade2D.input.Input;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.ArrayList;
+
+import static me.KeyBarricade2D.input.key.Keyboard.R;
 
 public class Level {
 
@@ -19,14 +18,14 @@ public class Level {
 
     private int mapWidth;
     private int mapHeight;
-    private int currentLevel = 1;
+    private int currentLevel = 3;
 
     public void start() {
 
         loadTiles();
         loadMap();
 
-        player = new Player(210, 250, this);
+        player = new Player(200, 240, this);
 
     }
 
@@ -131,15 +130,25 @@ public class Level {
         checkKeys();
         checkBarricade();
         checkGoal();
+
+        // Reset the game
+        if(Input.isPressed(R)){
+            loadMap();
+        }
     }
 
     public void paint(Graphics2D g) {
 
         for (int i = 0; i < mapHeight; i++) {
             for (int j = 0; j < mapWidth; j++) {
-                g.drawImage(map[i][j].getImage(), 10 + j * map[i][j].SIZE, 10 + i * map[i][j].SIZE, map[i][j].SIZE, map[i][j].SIZE, null);
+                g.drawImage(map[i][j].getImage(), j * map[i][j].SIZE, i * map[i][j].SIZE, map[i][j].SIZE, map[i][j].SIZE, null);
             }
-            player.paint(g);
         }
+
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 480, 486, 80);
+
+        player.paint(g);
     }
+
 }

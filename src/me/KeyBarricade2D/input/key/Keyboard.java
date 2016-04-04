@@ -13,4 +13,6 @@ public class Keyboard {
     public static final int LEFT = KeyEvent.VK_LEFT;
     public static final int DOWN = KeyEvent.VK_DOWN;
     public static final int RIGHT = KeyEvent.VK_RIGHT;
+
+    public static final int R = KeyEvent.VK_R;
 }
