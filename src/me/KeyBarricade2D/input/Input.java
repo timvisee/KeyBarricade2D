@@ -8,9 +8,15 @@ import java.util.List;
 public class Input {
 
     /**
-     * List of pressed keys.
+     * List of keys that is currently pressed.
      */
     public static List<Integer> pressedKeys = new ArrayList<>();
+
+    /**
+     * List of keys that has been pressed once, but not consumed yet.
+     * As soon as {@see isPressedOnce()} is called, the given key is removed from this list.
+     */
+    public static List<Integer> pressedOnceKeys = new ArrayList<>();
 
     /**
      * Check whether a key is currently pressed.
@@ -21,6 +27,20 @@ public class Input {
      */
     public static boolean isPressed(int keyCode) {
         return pressedKeys.contains(keyCode);
+    }
+
+    /**
+     * Check whether a key is pressed once.
+     * Calling this method will consume the 'pressed once' state for the given key.
+     * The state of the key will be reset when the key is released, and is then pressed again.
+     *
+     * @param keyCode Code of the key.
+     *
+     * @return True if pressed, false if not.
+     */
+    public static boolean isPressedOnce(int keyCode) {
+        // If the given key is in the list, the remove statement below will return true, false otherwise
+        return pressedOnceKeys.remove((Integer) keyCode);
     }
 
     /**
@@ -37,12 +57,14 @@ public class Input {
                 // Add the key to the list if it isn't in the list already
                 if(!pressedKeys.contains(keyCode)) {
                     pressedKeys.add(keyCode);
+                    pressedKeys.add(keyCode);
                     break;
                 }
 
             case RELEASED:
                 // Remove the key from the list if it's currently in the list
                 pressedKeys.remove((Integer) keyCode);
+                pressedOnceKeys.remove((Integer) keyCode);
                 break;
 
             default:
