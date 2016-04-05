@@ -1,6 +1,6 @@
 package me.KeyBarricade2D.Level;
 
-import me.KeyBarricade2D.input.Input;
+import static me.KeyBarricade2D.input.Input.isPressedOnce;
 import static me.KeyBarricade2D.input.key.Keyboard.*;
 
 import java.awt.*;
@@ -14,17 +14,17 @@ public class Menu extends Base {
 
     public void update(){
 
-        if(Input.isPressed(W) && currentChoice == 0){
+        if(isPressedOnce(W) && currentChoice == 0){
             currentChoice = 2;
         }
 
-        if(Input.isPressed(W) && currentChoice != 0){
+        if(isPressedOnce(W) && currentChoice != 0){
             currentChoice--;
         }
-        if(Input.isPressed(S) && currentChoice == 2){
+        if(isPressedOnce(S) && currentChoice == 2){
             currentChoice = 0;
         }
-        if(Input.isPressed(S) && currentChoice != 2){
+        if(isPressedOnce(S) && currentChoice != 2){
             currentChoice++;
         }
     }

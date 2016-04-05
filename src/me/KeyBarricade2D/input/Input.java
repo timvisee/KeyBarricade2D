@@ -75,6 +75,7 @@ public class Input {
      * Flush all registered keys.
      * This will reset the state of each tracked key, until it's pressed again.
      */
+    @SuppressWarnings("unused")
     public static void flush() {
         // Flush the pressed keys
         pressedKeys.clear();

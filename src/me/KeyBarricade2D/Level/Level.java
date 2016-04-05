@@ -2,11 +2,11 @@ package me.KeyBarricade2D.Level;
 
 import me.KeyBarricade2D.Level.Tiles.*;
 import me.KeyBarricade2D.Player.Player;
-import me.KeyBarricade2D.input.Input;
 
 import java.awt.*;
 import java.io.*;
 
+import static me.KeyBarricade2D.input.Input.isPressedOnce;
 import static me.KeyBarricade2D.input.key.Keyboard.R;
 
 public class Level extends Base {
@@ -132,7 +132,7 @@ public class Level extends Base {
         checkGoal();
 
         // Reset the game
-        if(Input.isPressed(R)){
+        if(isPressedOnce(R)){
             loadMap();
         }
     }

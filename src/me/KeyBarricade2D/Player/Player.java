@@ -4,7 +4,6 @@ import me.KeyBarricade2D.Level.Level;
 import me.KeyBarricade2D.Level.Tiles.Barricade;
 import me.KeyBarricade2D.Level.Tiles.Key;
 import me.KeyBarricade2D.Level.Tiles.Tile;
-import me.KeyBarricade2D.input.Input;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static me.KeyBarricade2D.input.Input.isPressedOnce;
 import static me.KeyBarricade2D.input.key.Keyboard.*;
 
 public class Player {
@@ -49,16 +49,16 @@ public class Player {
 
     public void registerMovement() {
 
-        if(isPressed(W) || isPressed(UP))
+        if(isPressedOnce(W) || isPressedOnce(UP))
             move(UP);
 
-        if(isPressed(A) || isPressed(LEFT))
+        if(isPressedOnce(A) || isPressedOnce(LEFT))
             move(LEFT);
 
-        if(isPressed(S) || isPressed(DOWN))
+        if(isPressedOnce(S) || isPressedOnce(DOWN))
             move(DOWN);
 
-        if(isPressed(D) || isPressed(RIGHT))
+        if(isPressedOnce(D) || isPressedOnce(RIGHT))
             move(RIGHT);
     }
 
@@ -79,8 +79,6 @@ public class Player {
         }else if(Tile(keycode).tileType == 2 && ((Barricade)Tile(keycode)).getBarricadeSize() != key.getKeySize()) {
             wrongKeyNotification = true;
         }
-
-        Input.flush();
     }
 
     public void resetPos(){
@@ -113,10 +111,6 @@ public class Player {
 
     public void setLevel(Level level) {
         this.level = level;
-    }
-
-    private boolean isPressed(int keycode) {
-        return Input.isPressed(keycode);
     }
 
     public void paint(Graphics2D g) {
