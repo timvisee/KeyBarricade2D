@@ -57,7 +57,7 @@ public class Input {
                 // Add the key to the list if it isn't in the list already
                 if(!pressedKeys.contains(keyCode)) {
                     pressedKeys.add(keyCode);
-                    pressedKeys.add(keyCode);
+                    pressedOnceKeys.add(keyCode);
                     break;
                 }
 
