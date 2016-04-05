@@ -1,12 +1,20 @@
 package me.KeyBarricade2D.Manager;
 
-import me.KeyBarricade2D.Level.Level;
+import me.KeyBarricade2D.Level.Base;
 
 import java.awt.*;
 
 public class GameStateManager {
 
-    private Level level;
+
+    /**
+     * creating a level object.
+     */
+    private Base level;
+
+    /**
+     * Variable for making sure that the game draws after its loaded.
+     */
     private boolean startPainting = false;
 
     public void update() {
@@ -14,13 +22,11 @@ public class GameStateManager {
         this.level.update();
     }
 
-    public void loadLevel(Level level) {
+    public void loadLevel(Base level) {
         this.level = level;
-    }
-
-    public void start() {
 
         this.level.start();
+
         startPainting = true;
     }
 

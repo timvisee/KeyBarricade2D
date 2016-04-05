@@ -5,7 +5,7 @@ import static me.KeyBarricade2D.input.key.Keyboard.*;
 
 import java.awt.*;
 
-public class Menu {
+public class Menu extends Base {
 
     private String [] choice = {"Start", "Level select", "Quit"};
     private int currentChoice = 0;
@@ -34,7 +34,15 @@ public class Menu {
         g.setBackground(Color.blue);
 
         for (int i = 0; i < choice.length; i++) {
+
+            if(i == this.currentChoice){
+                g.setColor(Color.BLUE);
+            }
+            else {
+                g.setColor(Color.black);
+            }
             g.drawString(choice[i], 150, 50 + (50 * i));
+
 
         }
 

@@ -1,7 +1,8 @@
 package me.KeyBarricade2D;
 
-import me.KeyBarricade2D.Level.Level;
+import me.KeyBarricade2D.Level.Menu;
 import me.KeyBarricade2D.Manager.GameManager;
+
 
 public class Main {
 
@@ -12,11 +13,10 @@ public class Main {
         manager.init();
         System.out.println("Initialized game!");
 
-        manager.getGameStateManager().loadLevel(new Level());
+
+        manager.getGameStateManager().loadLevel(new Menu());
         System.out.println("Loading level!");
 
-        manager.getGameStateManager().start();
-        System.out.println("Started Game!");
 
         while(true) {
 

@@ -9,7 +9,7 @@ import java.io.*;
 
 import static me.KeyBarricade2D.input.key.Keyboard.R;
 
-public class Level {
+public class Level extends Base {
 
     public Tile[][] map;
 

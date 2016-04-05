@@ -8,10 +8,7 @@ public class Input {
 
     public static List<Integer> pressedKeys = new ArrayList<>();
 
-    public static void init() {
-        // Flush all inputs
-        flush();
-    }
+
     public static boolean isPressed(int keyCode) {
         return pressedKeys.contains(keyCode);
     }
