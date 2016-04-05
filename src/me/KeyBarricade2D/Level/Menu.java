@@ -14,18 +14,19 @@ public class Menu extends Base {
 
     public void update(){
 
-        if(isPressedOnce(W) && currentChoice == 0){
-            currentChoice = 2;
-        }
-
-        if(isPressedOnce(W) && currentChoice != 0){
+        if(isPressedOnce(W) || isPressedOnce(UP)){
             currentChoice--;
         }
-        if(isPressedOnce(S) && currentChoice == 2){
-            currentChoice = 0;
-        }
-        if(isPressedOnce(S) && currentChoice != 2){
+
+        if(isPressedOnce(S) || isPressedOnce(DOWN)){
             currentChoice++;
+        }
+
+        // Make sure the current choice doesn't go out of bound
+        if(currentChoice < 0) {
+            currentChoice = 2;
+        } else if(currentChoice > 2) {
+            currentChoice = 0;
         }
     }
 
@@ -37,10 +38,10 @@ public class Menu extends Base {
 
             if(i == this.currentChoice){
                 g.setColor(Color.BLUE);
-            }
-            else {
+            } else {
                 g.setColor(Color.black);
             }
+
             g.drawString(choice[i], 150, 50 + (50 * i));
 
 
